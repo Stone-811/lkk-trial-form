@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>體驗課電子表單（試用版）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--navy:#2C4258;--navy2:#3d5873;--orange:#E07A2E;--ink:#1f2a33;--muted:#6b7680;--line:#c9d0d6;--bg:#e9ecef;--paper:#fff;--miss:#c0392b;--soft:#f4f2ee}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:17px;line-height:1.55}
+.topbar{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar b{font-size:18px;letter-spacing:.5px}
+.topbar .tag{background:#fff;color:var(--navy);border-radius:4px;padding:1px 8px;font-size:13px;font-weight:700}
+.topbar .sp{flex:1}
+.wrap{max-width:860px;margin:0 auto;padding:22px 14px 140px}
+.page{background:var(--paper);box-shadow:0 2px 10px rgba(0,0,0,.12);margin:0 0 26px;padding:34px 42px 38px;position:relative}
+.page.off{display:none}
+.skipnote{max-width:860px;margin:-10px auto 26px;padding:12px 18px;background:#fff8ef;border:1px dashed var(--orange);border-radius:6px;color:#8a4a12;font-size:15px}
+.ph{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:3px solid var(--navy);padding-bottom:10px;margin-bottom:18px}
+.ph .brand{font-weight:700;color:var(--navy);font-size:15px;letter-spacing:1px}
+.ph h1{margin:0;font-size:26px;color:var(--navy);letter-spacing:3px}
+.ph .paper{font-size:12.5px;color:var(--muted)}
+.sec{margin:22px 0 8px;padding:5px 12px;background:var(--soft);border-left:5px solid var(--navy);font-weight:700;font-size:17px;display:flex;align-items:center;gap:10px}
+.who{font-size:12.5px;font-weight:700;border-radius:20px;padding:1px 10px;white-space:nowrap}
+.who.s{border:1.5px solid var(--navy);color:var(--navy);background:#fff}
+.who.k{background:var(--navy);color:#fff}
+.grid{display:flex;flex-wrap:wrap;gap:4px 22px}
+.f{flex:1 1 100%;padding:7px 0;min-width:0}
+.f.half{flex:1 1 calc(50% - 22px)}
+.f.third{flex:1 1 calc(33.3% - 22px)}
+.f.off{display:none}
+.f .lb{font-size:16px;margin-bottom:4px}
+.f .lb .req{color:var(--orange);font-weight:700;margin-left:2px}
+.f .lb .cell{font-size:11.5px;color:#9aa3ab;margin-left:6px}
+.f.q-sub{padding-left:26px}
+.f.q-main .lb{font-weight:700}
+.f.missing .lb{color:var(--miss)}
+.f.missing .line,.f.missing .opts,.f.missing canvas{outline:2px solid var(--miss);outline-offset:2px}
+.f.flash{animation:fl 1.2s}
+@keyframes fl{0%{background:#fff3cd}100%{background:transparent}}
+input.line,textarea.line,select.line{width:100%;border:none;border-bottom:1.5px solid var(--ink);font:inherit;font-size:17px;padding:6px 2px;background:transparent;color:var(--ink);border-radius:0}
+textarea.line{border:1.5px solid var(--line);border-radius:4px;min-height:96px;padding:8px}
+input.line:focus,textarea.line:focus{outline:none;border-color:var(--navy);background:#f6f9fc}
+.unitrow{display:flex;align-items:center;gap:8px}.unitrow input{min-width:0;flex:1}
+.unitrow .u{color:var(--muted);font-size:15px;white-space:nowrap}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts.col{flex-direction:column;align-items:flex-start}
+.opt{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 10px;border:1.5px solid var(--line);border-radius:6px;cursor:pointer;user-select:none;background:#fff;min-height:44px;font-size:16px}
+.opt .bx{width:20px;height:20px;border:2px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex:none}
+.opt.round .bx{border-radius:50%}
+.opt.on{border-color:var(--navy);background:#eef3f8}
+.opt.on .bx{background:var(--navy);border-color:var(--navy);color:#fff}
+.opt.on .bx::after{content:"✓"}
+.note{font-size:15.5px;margin:8px 0;color:var(--ink)}
+.note.pre{white-space:pre-line;background:var(--soft);padding:12px 16px;border-radius:6px}
+.note.warn{color:#8a4a12;font-weight:700}
+.note.hint{color:var(--muted);font-size:14.5px}
+.note.quote{border:1.5px solid var(--line);padding:14px 18px;border-radius:6px;background:#fbfbfa;font-size:15.5px}
+.note.off{display:none}
+.age{font-size:14px;color:var(--muted);margin-top:4px}
+.sug{font-size:14px;color:var(--navy);margin-top:6px;background:#eef3f8;padding:6px 10px;border-radius:4px;display:inline-block}
+.sigbox{position:relative}
+.sigbox canvas{width:100%;height:150px;border:1.5px dashed var(--navy2);border-radius:6px;background:#fff;touch-action:none;display:block}
+.sigbox .ph2{position:absolute;left:12px;top:10px;color:#b4bcc3;font-size:14px;pointer-events:none}
+.sigbox .clr{position:absolute;right:8px;top:8px}
+.btn{font:inherit;font-size:15px;border-radius:6px;padding:8px 16px;cursor:pointer;border:1.5px solid var(--navy);background:#fff;color:var(--navy);min-height:42px}
+.btn.pri{background:var(--navy);color:#fff}
+.btn.ghost{border-color:#fff;color:#fff;background:transparent}
+.btn.sm{font-size:13.5px;padding:4px 10px;min-height:32px}
+.btn:disabled{opacity:.5;cursor:default}
+.dobrow{display:grid;grid-template-columns:1fr auto 1fr 1.4fr;gap:14px;align-items:end}.dobrow .sub{font-size:13.5px;color:var(--muted)}.dobrow .or{padding-bottom:10px;color:var(--muted)}.dobrow select.line{font-size:16px}
+@media (max-width:640px){.dobrow{grid-template-columns:1fr 1fr}.dobrow .or{display:none}}
+.mirror{border-bottom:1.5px solid var(--ink);padding:6px 2px;min-height:38px}
+/* 人形圖 */
+.parts{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+.parts svg{width:230px;flex:none}
+.parts svg .body{fill:#eef0f2;stroke:#8d98a3;stroke-width:1.5}
+.parts svg .hit{fill:rgba(44,66,88,.0);stroke:var(--navy2);stroke-width:1.4;stroke-dasharray:3 2;cursor:pointer}
+.parts svg .hit.on{fill:rgba(224,122,46,.75);stroke:var(--orange);stroke-dasharray:none}
+.parts svg text{font-size:10px;fill:var(--muted)}
+.plist{flex:1;min-width:250px}
+.plist table{border-collapse:collapse;width:100%}
+.plist td{padding:3px 4px;vertical-align:middle}
+.plist td.n{font-weight:700;width:46px}
+.plist .opt{min-height:38px;padding:4px 10px 4px 8px;font-size:15px}
+.rep .row{display:grid;grid-template-columns:130px 1fr 130px 40px;gap:10px;align-items:end;margin-bottom:6px}
+.rep .row select{font:inherit;font-size:16px;padding:6px;border:none;border-bottom:1.5px solid var(--ink);background:transparent}
+.bottombar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);box-shadow:0 -2px 10px rgba(0,0,0,.08);padding:10px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
+.bottombar .cnt{font-size:15px}
+.bottombar .cnt b{color:var(--orange)}
+.modal{position:fixed;inset:0;background:rgba(20,30,40,.5);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal .box{background:#fff;border-radius:10px;max-width:640px;width:100%;max-height:85vh;overflow:auto;padding:24px 26px}
+.modal h3{margin:0 0 10px;color:var(--navy)}
+.modal ul{padding-left:20px;margin:8px 0}
+.steps li{margin:6px 0}
+.steps .ok{color:#1e7a46;font-weight:700}
+.steps .bad{color:var(--miss);font-weight:700}
+.steps .run{color:var(--navy);font-weight:700}
+.printing .noprint{display:none!important}
+.printing .f .lb .cell{display:none}
+.printing .page{box-shadow:none;margin:0}
+@media (max-width:640px){.page{padding:22px 16px}.f.half,.f.third{flex-basis:100%}.rep .row{grid-template-columns:1fr 1fr}.ph h1{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <b>練健康｜體驗課電子表單</b><span class="tag">試用版 v4</span>
+  <span class="sp"></span>
+  <span style="font-size:13.5px;opacity:.85">送出會寫進「體驗課總表（試用）」，請勿填真實學員資料</span>
+</div>
+<div class="wrap" id="wrap"></div>
+<div class="bottombar noprint">
+  <span class="cnt" id="cnt"></span>
+  <button class="btn" id="bNext">跳到下一個未填</button>
+  <button class="btn" id="bDemo">填入測試資料</button>
+  <button class="btn" id="bReset">清空</button>
+  <button class="btn pri" id="bSubmit">送出</button>
+</div>
+<div class="modal" id="modal"><div class="box" id="mbox"></div></div>
+
+<script>
+const SPEC = {"pages": [{"id": "p0", "title": "個人資料蒐集告知與同意", "blocks": [{"type": "head", "text": "開始填寫前請先閱讀", "who": "學員"}, {"type": "note", "text": "【試用版】以下是說明文字要寫的重點，正式文字待法務／人資確認後才會放上：", "cls": "warn"}, {"type": "note", "text": "1. 蒐集單位：練健康所屬公司（用哪一家公司名義待確認）\n2. 蒐集目的：體驗課評估、運動安全篩檢、安排課表\n3. 蒐集哪些資料：基本資料、聯絡方式、健康與病史、身體量測結果、簽名\n4. 誰會看到：負責教練、該店店長、教育訓練部（權限鎖定）\n5. 保存多久、存在哪裡（Google Sheet／Drive，公司帳號）\n6. 您可以要求查詢、更正、停止使用或刪除，以及聯絡窗口\n7. 不提供資料的影響：教練無法確認運動安全，可能無法安排課程\n8. 健康相關資料的蒐集條件（待法務確認）", "cls": "pre"}, {"id": "S00", "label": "我已閱讀上述個人資料蒐集說明，並同意練健康蒐集與使用我的資料", "type": "check", "req": true}]}, {"id": "p1", "title": "體適能運動諮詢單", "paper": "紙本第 1 頁", "blocks": [{"type": "head", "text": "體驗課資訊", "who": "教練"}, {"id": "K01", "label": "門市", "type": "radio", "opts": ["南京", "西門", "七張", "松江"], "req": true, "cell": "（存檔資料夾用）"}, {"id": "K02", "label": "負責教練", "type": "text", "req": true, "cell": "C7", "w": "half"}, {"id": "K03", "label": "填寫日期", "type": "date", "req": true, "today": true, "w": "half"}, {"type": "head", "text": "基本資料 Personal Info", "who": "學員"}, {"id": "S01", "label": "姓名", "type": "text", "req": true, "cell": "C8", "w": "half"}, {"id": "S02", "label": "性別", "type": "radio", "opts": ["女", "男"], "req": true, "cell": "C9", "w": "half"}, {"id": "S03", "label": "年齡／出生年", "type": "dob", "req": true, "cell": "C10／C11"}, {"id": "S07", "label": "職業", "type": "text", "w": "half"}, {"id": "S04", "label": "聯絡電話", "type": "tel", "req": true, "w": "half"}, {"id": "S05", "label": "Email", "type": "email", "w": "half"}, {"id": "S06", "label": "聯絡地址", "type": "text"}, {"id": "S08", "label": "目前運動習慣", "type": "radio", "req": true, "cell": "C54", "col": true, "opts": ["(一)完全沒有運動", "(二)有想運動，還沒開始", "(三)偶爾想到會運動一下，但每週運動不超過 150 分鐘", "(四)每週運動超過三次，但還持續不到六個月", "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上"]}, {"type": "head", "text": "身體狀況評估", "who": "教練"}, {"id": "K04", "label": "安靜心率", "type": "number", "unit": "bpm", "req": true, "cell": "C21", "w": "third"}, {"id": "K05", "label": "收縮壓", "type": "number", "unit": "mmHg", "req": true, "cell": "C19", "w": "third"}, {"id": "K06", "label": "舒張壓", "type": "number", "unit": "mmHg", "req": true, "cell": "C20", "w": "third"}, {"id": "K07", "label": "身高", "type": "number", "unit": "cm", "req": true, "cell": "C13", "w": "third"}, {"id": "K08", "label": "體重", "type": "number", "unit": "kg", "req": true, "cell": "C14", "w": "third"}, {"id": "K09", "label": "SMI", "type": "number", "unit": "kg/m²", "req": true, "cell": "C18", "w": "third"}, {"id": "K10", "label": "左手握力", "type": "number", "unit": "kg", "req": true, "cell": "C17", "w": "third"}, {"id": "K11", "label": "右手握力", "type": "number", "unit": "kg", "req": true, "cell": "C16", "w": "third"}, {"id": "K12", "label": "五次坐到站", "type": "number", "unit": "秒", "req": true, "cell": "C30", "w": "third"}, {"id": "K13", "label": "4 公尺行走", "type": "number", "unit": "秒", "req": true, "cell": "C31", "w": "third"}, {"id": "K14", "label": "（已停用）超過 4 秒", "type": "check", "retired": true}, {"id": "K15", "label": "三十秒坐到站", "type": "number", "unit": "次", "w": "third"}, {"type": "head", "text": "動作評估", "who": "教練"}, {"id": "K16", "label": "單腳站｜左", "type": "secs", "w": "half"}, {"id": "K16b", "label": "（左腳無法）右腳墊腳站", "type": "secs", "w": "half", "show": {"if": "K16", "eq": "無法"}}, {"id": "K17", "label": "單腳站｜右", "type": "secs", "w": "half"}, {"id": "K17b", "label": "（右腳無法）左腳墊腳站", "type": "secs", "w": "half", "show": {"if": "K17", "eq": "無法"}}, {"id": "K18", "label": "一字型站｜左腳在前", "type": "secs", "w": "half"}, {"id": "K19", "label": "一字型站｜右腳在前", "type": "secs", "w": "half"}, {"id": "K20", "label": "單腳椅子起立｜左", "type": "radio", "opts": ["完成", "無法"], "w": "half"}, {"id": "K21", "label": "單腳椅子起立｜右", "type": "radio", "opts": ["完成", "無法"], "w": "half"}, {"id": "K22", "label": "靠牆站：後腦勺靠得到牆嗎？", "type": "radio", "opts": ["靠得到", "靠不到"], "req": true, "cell": "C34（靠得到＝0；靠不到＝骨折 F2）", "w": "half"}, {"type": "head", "text": "特殊疾病與病史", "who": "學員"}, {"id": "S09", "label": "現有特殊疾病（可複選）", "type": "multi", "req": true, "cell": "C55／C56", "none": "以上皆無", "opts": ["心血管疾病", "代謝疾病", "肺部疾病", "消化系統疾病", "帕金森氏症", "失智症", "小腦疾病", "前庭疾病／眩暈症", "視力障礙", "其他神經系統疾病", "以上皆無"]}, {"id": "S10", "label": "其他疾病：請寫疾病名稱", "type": "text"}, {"id": "S11", "label": "過去病史", "type": "text"}, {"id": "S12", "label": "目前是否長期（3 個月以上）服用或注射類固醇？", "type": "radio", "opts": ["是", "否"], "req": true, "cell": "C44"}, {"id": "S13", "label": "醫師是否說過您的脊椎有壓迫性骨折？（例如跌倒、搬東西或咳嗽後脊椎骨折）", "type": "radio", "opts": ["有", "沒有", "不確定"], "req": true, "cell": "C43"}, {"id": "S14", "label": "過去 12 個月內沒有手術", "type": "check", "cell": "C57"}, {"id": "S15", "label": "治療／手術史（可新增多筆）", "type": "repeat", "show": {"if": "S14", "ne": "是"}, "req": true, "cell": "C57"}, {"id": "S16", "label": "有做過骨密度檢查嗎？", "type": "radio", "opts": ["有", "沒做過"], "req": true}, {"id": "S17", "label": "骨密度 T score", "type": "number", "neg": true, "w": "half", "cell": "C32", "show": {"if": "S16", "eq": "有"}}, {"id": "S18", "label": "骨密度 Z score", "type": "number", "neg": true, "w": "half", "cell": "C33", "show": {"if": "S16", "eq": "有"}}]}, {"id": "p2", "title": "不適部位與健身目標", "paper": "紙本第 2 頁", "blocks": [{"type": "head", "text": "目前不適之關節與部位", "who": "學員"}, {"id": "S19", "label": "目前有不舒服的關節或部位嗎？", "type": "radio", "opts": ["有", "沒有"], "req": true}, {"id": "S20", "label": "請點人形圖或在右邊勾選（可複選）", "type": "parts", "req": true, "show": {"if": "S19", "eq": "有"}}, {"id": "S21", "label": "最近彎腰或轉身時，背部會痛嗎？", "type": "radio", "opts": ["會", "不會"], "req": true, "cell": "C53"}, {"type": "head", "text": "健身目標及動機", "who": "學員"}, {"id": "S22", "label": "健身目標及動機", "type": "textarea", "req": true, "nolabel": true}, {"type": "head", "text": "課程進度規劃", "who": "教練"}, {"id": "K23", "label": "課程進度規劃", "type": "textarea", "nolabel": true}, {"id": "K24", "label": "32 堂課表版本", "type": "radio", "opts": ["A版", "B版", "不套用"], "cell": "C70", "suggest": true}, {"type": "head", "text": "簽名 ①", "who": "學員"}, {"id": "S23", "label": "學員簽名", "type": "sig", "req": true, "w": "half"}, {"id": "S24", "label": "日期", "type": "date", "req": true, "today": true, "w": "half"}, {"id": "S25", "label": "父母／監護人簽名", "type": "sig", "req": true, "minor": true, "w": "half"}]}, {"id": "p3", "title": "PAR-Q+ 身體活動準備問卷", "paper": "紙本第 3 頁", "blocks": [{"type": "head", "text": "一般健康問題（請回答是或否）", "who": "學員"}, {"id": "S26", "label": "1. 醫生曾經告知您有心血管相關狀況或是高血壓？", "type": "radio", "opts": ["是", "否"], "req": true, "cell": "C39"}, {"id": "S26a", "label": "請勾選", "type": "multi", "opts": ["心血管相關狀況", "高血壓"], "req": true, "show": {"if": "S26", "eq": "是"}, "cls": "q-sub"}, {"id": "S27", "label": "2. 曾在休息時、日常休閒活動或是運動中感覺到胸悶嗎？（如果是因為過度換氣引起或有關，包含在劇烈運動時暈眩請勾否）", "type": "radio", "opts": ["是", "否"], "req": true, "cell": "C40"}, {"id": "S28", "label": "3. 近一年內有過暈眩、失去平衡或是失去意識嗎？", "type": "radio", "opts": ["是", "否"], "req": true, "cell": "C41"}, {"id": "S29", "label": "是哪一種？（可複選）", "type": "multi", "opts": ["因頭暈而失去平衡", "失去意識"], "req": true, "show": {"if": "S28", "eq": "是"}, "cls": "q-sub"}, {"id": "S30", "label": "4. 曾經患有慢性疾病（心臟相關狀況跟高血壓除外）？", "type": "radio", "opts": ["是", "否"], "req": true}, {"id": "S30a", "label": "請填寫", "type": "text", "req": true, "show": {"if": "S30", "eq": "是"}, "cls": "q-sub"}, {"id": "S31", "label": "5. 目前有在服用慢性病的處方藥物嗎？", "type": "radio", "opts": ["是", "否"], "req": true}, {"id": "S31a", "label": "請填寫病症及藥物名稱", "type": "text", "req": true, "show": {"if": "S31", "eq": "是"}, "cls": "q-sub"}, {"id": "S32", "label": "6. 目前是否有（或過去 12 個月期間）骨骼、關節或軟組織（肌肉、肌腱、韌帶等）相關健康問題，可能會因為從事體能活動而惡化？（如果過去曾有相關的問題，但目前不會對你從事體能活動造成任何影響或限制請回答否）", "type": "radio", "opts": ["是", "否"], "req": true, "cell": "C42"}, {"id": "S33", "label": "7. 醫生是否曾告知只能在醫療人員的監督下做運動？", "type": "radio", "opts": ["是", "否"], "req": true}, {"type": "note", "text": "7 題都答「否」：不用填後面的追問，直接到「參與者聲明」。", "cls": "hint", "showNot": {"anyYes": ["S26", "S27", "S28", "S30", "S31", "S32", "S33"]}}]}, {"id": "p4", "title": "PAR-Q+ 追問", "paper": "紙本第 4–7 頁", "show": {"anyYes": ["S26", "S27", "S28", "S30", "S31", "S32", "S33"]}, "blocks": [{"type": "note", "text": "上一頁有任何一題答「是」，請回答以下問題。每一大題答「有」才需要回答小題。", "cls": "hint"}, {"id": "S34", "label": "1. 您有關節炎、骨質疏鬆症或是背部問題嗎？", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main"}, {"id": "S35", "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S34", "eq": "有"}, "cls": "q-sub"}, {"id": "S36", "label": "b. 是否有因關節問題引起的疼痛，包含近期發生的骨折、骨質疏鬆症引起的骨折或癌症，脊椎問題、椎骨位移（例如：椎間盤滑脫）或是椎弓骨折、椎弓解離等健康狀況？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S34", "eq": "有"}, "cls": "q-sub"}, {"id": "S37", "label": "c. 您是否定期注射類固醇或是服用類固醇藥物超過三個月？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S34", "eq": "有"}, "cls": "q-sub", "cell": "C44"}, {"id": "S38", "label": "2. 現在有任何種類的癌症嗎？", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main", "cell": "C45"}, {"id": "S39", "label": "a. 您是否包括以下任何類型的癌症：肺／支氣管癌、多發性骨髓瘤（漿細胞癌）、頭部和／或頸部？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S38", "eq": "有"}, "cls": "q-sub"}, {"id": "S40", "label": "b. 您目前是否正在接受癌症治療（例如化療或放療）？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S38", "eq": "有"}, "cls": "q-sub", "cell": "C45"}, {"id": "S41", "label": "3. 您有心臟或心血管疾病嗎？包括冠狀動脈疾病、心臟衰竭、心律不整", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main", "cell": "C46"}, {"id": "S42", "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S41", "eq": "有"}, "cls": "q-sub"}, {"id": "S43", "label": "b. 您是否有需要醫療介入的不規則心跳？如：心房顫動、室性早搏", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S41", "eq": "有"}, "cls": "q-sub"}, {"id": "S44", "label": "c. 您是否有慢性的心臟衰竭？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S41", "eq": "有"}, "cls": "q-sub"}, {"id": "S45", "label": "d. 您是否已經確診冠狀動脈疾病，並且在過去兩個月內沒有規律的運動？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S41", "eq": "有"}, "cls": "q-sub"}, {"id": "S46", "label": "4. 您現在有高血壓嗎？", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main", "cell": "C47"}, {"id": "S47", "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S46", "eq": "有"}, "cls": "q-sub"}, {"id": "S48", "label": "b. 不論吃藥或沒吃藥的情況下，您的血壓是否等於或超過 160/90？（如果不知道請勾「是」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S46", "eq": "有"}, "cls": "q-sub", "cell": "C47"}, {"id": "S49", "label": "5. 您現在有代謝相關疾病嗎？包含糖尿病前期、第一型及第二型糖尿病", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main"}, {"id": "S50", "label": "a. 您是否經常難以透過飲食、藥物、醫生處方來控制血糖水平？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S49", "eq": "有"}, "cls": "q-sub"}, {"id": "S51", "label": "b. 您是否經常在日常生活中或運動後有低血糖症的跡象和症狀？（顫抖、緊張、異常的煩躁、異常出汗、頭暈、精神錯亂、說話困難、虛弱或疲倦）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S49", "eq": "有"}, "cls": "q-sub", "cell": "C48"}, {"id": "S52", "label": "c. 糖尿病併發症的跡象或症狀，例如心臟或血管疾病和／或會影響您的眼睛、腎臟或腳趾和腳的感覺的併發症？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S49", "eq": "有"}, "cls": "q-sub"}, {"id": "S53", "label": "d. 您是否有其他代謝疾病（例如目前與妊娠相關的糖尿病、慢性腎病或肝臟問題）？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S49", "eq": "有"}, "cls": "q-sub"}, {"id": "S54", "label": "e. 您是否打算在不久的將來從事對您來說不習慣的高（或劇烈）強度的運動？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S49", "eq": "有"}, "cls": "q-sub"}, {"id": "S55", "label": "6. 您有任何心理健康問題或學習困難？（包括阿茲海默症、癡呆症、憂鬱症、焦慮症、飲食失調、精神病、智力障礙、唐氏綜合症）", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main"}, {"id": "S56", "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S55", "eq": "有"}, "cls": "q-sub"}, {"id": "S57", "label": "b. 您是否患有唐氏綜合症和影響神經或肌肉的背部問題？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S55", "eq": "有"}, "cls": "q-sub"}, {"id": "S58", "label": "7. 你有呼吸系統疾病嗎？包括慢性阻塞性肺病、哮喘、肺動脈高血壓", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main"}, {"id": "S59", "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S58", "eq": "有"}, "cls": "q-sub"}, {"id": "S60", "label": "b. 您的醫生是否曾說過您在休息或運動時的血氧水平低或需要氧氣治療？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S58", "eq": "有"}, "cls": "q-sub"}, {"id": "S61", "label": "c. 如果患有哮喘病，您目前是否有胸悶、喘息、呼吸困難、持續咳嗽的症狀（超過 2 天／週），或者您在上週使用過兩次以上的救援藥物？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S58", "eq": "有"}, "cls": "q-sub"}, {"id": "S62", "label": "d. 你的醫生有沒有說過你的肺部血管有高血壓？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S58", "eq": "有"}, "cls": "q-sub"}, {"id": "S63", "label": "8. 你有脊髓損傷嗎？這包括四肢癱瘓或半身不遂", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main"}, {"id": "S64", "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S63", "eq": "有"}, "cls": "q-sub"}, {"id": "S65", "label": "b. 您是否經常表現出明顯的低靜息血壓，引起頭暈或昏厥？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S63", "eq": "有"}, "cls": "q-sub", "cell": "C48"}, {"id": "S66", "label": "c. 您的醫生是否表明您有突發性的高血壓（被稱為自主的反射異常）？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S63", "eq": "有"}, "cls": "q-sub"}, {"id": "S67", "label": "9. 你有中風嗎？這包括暫時性腦缺血發作（TIA）或腦血管中風", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main", "cell": "C49"}, {"id": "S68", "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S67", "eq": "有"}, "cls": "q-sub"}, {"id": "S69", "label": "b. 您在步行或行動方面有任何障礙嗎？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S67", "eq": "有"}, "cls": "q-sub", "cell": "C50"}, {"id": "S70", "label": "c. 在過去 6 個月內，您是否經歷過中風或神經或肌肉損傷？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S67", "eq": "有"}, "cls": "q-sub", "cell": "C51"}, {"id": "S71", "label": "10. 您是否有以上未列出的任何其他疾病，或者您是否有兩種或多種疾病？", "type": "radio", "opts": ["有", "沒有"], "req": true, "cls": "q-main"}, {"id": "S72", "label": "a. 在過去一年中，你是否曾因頭部受傷而導致昏厥或失去知覺，或是被診斷出腦震盪？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S71", "eq": "有"}, "cls": "q-sub"}, {"id": "S73", "label": "b. 您是否有未列出的醫療狀況（例如癲癇、神經系統疾病、腎臟問題）？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S71", "eq": "有"}, "cls": "q-sub"}, {"id": "S74", "label": "c. 您目前是否患有兩種或多種疾病？", "type": "radio", "opts": ["是", "否"], "req": true, "show": {"if": "S71", "eq": "有"}, "cls": "q-sub"}, {"id": "S75", "label": "請列出您的身體狀況，以及列出任何相關藥物", "type": "textarea", "show": {"if": "S71", "eq": "有"}, "cls": "q-sub"}, {"type": "note", "text": "感謝您的填寫，教練評估後會建議您需轉介相關醫療人員，或評估後與您討論認為您已準備好從事更多體能活動。", "cls": "hint"}]}, {"id": "p5", "title": "參與者聲明", "paper": "紙本第 7 頁", "blocks": [{"type": "note", "text": "建議您諮詢合格的運動專家，以幫助您制定安全有效的體育活動計劃，以滿足您的健康需求。鼓勵您慢慢開始並逐漸增強——20 到 60 分鐘的低強度到中等強度運動，每週 3–5 天，包括有氧運動和肌力訓練。隨著你的進步，你的目標應該會是每週累積 150 分鐘或更多的中等強度以上的體能活動。如果您年齡在 45 歲以上並且不習慣經常高強度或劇烈運動，在進行高強度的運動之前，請先諮詢合格的專業運動教練。", "cls": "quote"}, {"type": "head", "text": "參與者聲明處（如果未達到法定年齡，還需父母或監護人在此表格簽名）", "who": "學員"}, {"type": "note", "text": "我本人已閱讀並完整的理解此份問卷，確定以上資訊皆為我本人提供且填寫無誤，經教練說明後了解運動過程可能的風險並瞭解若因填寫不實或刻意隱瞞身體狀況導致在運動期間發生意外，練健康不需負擔任何法律責任且本人不得對練健康或相關人員提起告訴。我已清楚瞭解此體能活動聲明書在十二個月內具有有效性，但會在向練健康告知身體狀況改變後或經過十二個月後失效。我瞭解練健康會儲存本文件用以紀錄，文件將以符合個資法的保密的方式妥善保存，絕不會在取得您的個人允許前將您的個人資料外流給無關第三方。", "cls": "quote"}, {"id": "S76", "label": "我已閱讀並理解上述參與者聲明", "type": "check", "req": true}, {"id": "S77", "label": "姓名", "type": "mirror", "of": "S01", "w": "half"}, {"id": "S78", "label": "日期", "type": "date", "req": true, "today": true, "w": "half"}, {"id": "S79", "label": "學員簽名", "type": "sig", "req": true, "w": "half"}, {"id": "S80", "label": "父母／監護人簽名", "type": "sig", "req": true, "minor": true, "w": "half"}, {"type": "head", "text": "教練簽名", "who": "教練"}, {"id": "K25", "label": "教練簽名", "type": "sig", "req": true, "w": "half"}]}], "header": ["送出時間", "表單版本", "S00 我已閱讀上述個人資料蒐集說明，並同意練健康蒐集與使用我…", "K01 門市", "K02 負責教練", "K03 填寫日期", "S01 姓名", "S02 性別", "S03 年齡／出生年", "S07 職業", "S04 聯絡電話", "S05 Email", "S06 聯絡地址", "S08 目前運動習慣", "K04 安靜心率", "K05 收縮壓", "K06 舒張壓", "K07 身高", "K08 體重", "K09 SMI", "K10 左手握力", "K11 右手握力", "K12 五次坐到站", "K13 4 公尺行走", "K14 （已停用）超過 4 秒", "K15 三十秒坐到站", "K16 單腳站｜左", "K16b （左腳無法）右腳墊腳站", "K17 單腳站｜右", "K17b （右腳無法）左腳墊腳站", "K18 一字型站｜左腳在前", "K19 一字型站｜右腳在前", "K20 單腳椅子起立｜左", "K21 單腳椅子起立｜右", "K22 靠牆站：後腦勺靠得到牆嗎？", "S09 現有特殊疾病", "S10 其他疾病：請寫疾病名稱", "S11 過去病史", "S12 目前是否長期", "S13 醫師是否說過您的脊椎有壓迫性骨折？", "S14 過去 12 個月內沒有手術", "S15 治療／手術史", "S16 有做過骨密度檢查嗎？", "S17 骨密度 T score", "S18 骨密度 Z score", "S19 目前有不舒服的關節或部位嗎？", "S20 請點人形圖或在右邊勾選", "S21 最近彎腰或轉身時，背部會痛嗎？", "S22 健身目標及動機", "K23 課程進度規劃", "K24 32 堂課表版本", "S23 學員簽名", "S24 日期", "S25 父母／監護人簽名", "S26 1. 醫生曾經告知您有心血管相關狀況或是高血壓？", "S26a 請勾選", "S27 2. 曾在休息時、日常休閒活動或是運動中感覺到胸悶嗎？", "S28 3. 近一年內有過暈眩、失去平衡或是失去意識嗎？", "S29 是哪一種？", "S30 4. 曾經患有慢性疾病", "S30a 請填寫", "S31 5. 目前有在服用慢性病的處方藥物嗎？", "S31a 請填寫病症及藥物名稱", "S32 6. 目前是否有", "S33 7. 醫生是否曾告知只能在醫療人員的監督下做運動？", "S34 1. 您有關節炎、骨質疏鬆症或是背部問題嗎？", "S35 a. 您是否難以透過藥物或醫生處方控制病情？", "S36 b. 是否有因關節問題引起的疼痛，包含近期發生的骨折、…", "S37 c. 您是否定期注射類固醇或是服用類固醇藥物超過三個月？", "S38 2. 現在有任何種類的癌症嗎？", "S39 a. 您是否包括以下任何類型的癌症：肺／支氣管癌、多發…", "S40 b. 您目前是否正在接受癌症治療", "S41 3. 您有心臟或心血管疾病嗎？包括冠狀動脈疾病、心臟衰…", "S42 a. 您是否難以透過藥物或醫生處方控制病情？", "S43 b. 您是否有需要醫療介入的不規則心跳？如：心房顫動、…", "S44 c. 您是否有慢性的心臟衰竭？", "S45 d. 您是否已經確診冠狀動脈疾病，並且在過去兩個月內沒…", "S46 4. 您現在有高血壓嗎？", "S47 a. 您是否難以透過藥物或醫生處方控制病情？", "S48 b. 不論吃藥或沒吃藥的情況下，您的血壓是否等於或超過…", "S49 5. 您現在有代謝相關疾病嗎？包含糖尿病前期、第一型及…", "S50 a. 您是否經常難以透過飲食、藥物、醫生處方來控制血糖…", "S51 b. 您是否經常在日常生活中或運動後有低血糖症的跡象和…", "S52 c. 糖尿病併發症的跡象或症狀，例如心臟或血管疾病和／…", "S53 d. 您是否有其他代謝疾病", "S54 e. 您是否打算在不久的將來從事對您來說不習慣的高", "S55 6. 您有任何心理健康問題或學習困難？", "S56 a. 您是否難以透過藥物或醫生處方控制病情？", "S57 b. 您是否患有唐氏綜合症和影響神經或肌肉的背部問題？", "S58 7. 你有呼吸系統疾病嗎？包括慢性阻塞性肺病、哮喘、肺…", "S59 a. 您是否難以透過藥物或醫生處方控制病情？", "S60 b. 您的醫生是否曾說過您在休息或運動時的血氧水平低或…", "S61 c. 如果患有哮喘病，您目前是否有胸悶、喘息、呼吸困難…", "S62 d. 你的醫生有沒有說過你的肺部血管有高血壓？", "S63 8. 你有脊髓損傷嗎？這包括四肢癱瘓或半身不遂", "S64 a. 您是否難以透過藥物或醫生處方控制病情？", "S65 b. 您是否經常表現出明顯的低靜息血壓，引起頭暈或昏厥？", "S66 c. 您的醫生是否表明您有突發性的高血壓", "S67 9. 你有中風嗎？這包括暫時性腦缺血發作", "S68 a. 您是否難以透過藥物或醫生處方控制病情？", "S69 b. 您在步行或行動方面有任何障礙嗎？", "S70 c. 在過去 6 個月內，您是否經歷過中風或神經或肌肉…", "S71 10. 您是否有以上未列出的任何其他疾病，或者您是否有…", "S72 a. 在過去一年中，你是否曾因頭部受傷而導致昏厥或失去…", "S73 b. 您是否有未列出的醫療狀況", "S74 c. 您目前是否患有兩種或多種疾病？", "S75 請列出您的身體狀況，以及列出任何相關藥物", "S76 我已閱讀並理解上述參與者聲明", "S77 姓名", "S78 日期", "S79 學員簽名", "S80 父母／監護人簽名", "K25 教練簽名", "年齡（自動算）", "PDF 存檔", "公版課表"]};
+const SHEET_ID = "1Q3j_v8EpnEeg1qgGoCTEuru8EAtJekBeR13jr3-_Wlc";
+const SHEET_RANGE = "工作表1!A1";
+const PDF_FOLDER = "1gRkaKzJqkj6GyjFCT9dL2u_QqvsFUbMf";
+const TEMPLATE_ID = "1tdRMlfil-PghEJQY75CnuS79L-Bp-qv49YGYNOHNois"; // 公版課表 v28（Google 試算表）
+const STORE_FOLDER = {南京: "1-1E1oaRadQdAqO3jHzUj4uPHkj25al6V", 西門: "1fIw2UjR8B6ZqXuxiq3ekS8RO8nQ4UjuD", 七張: "1GpoVE_fhSEWqNQd2J_SYqAZmQ11zD4jq", 松江: "1z-2S-vzgK3qb5IKDzAvF5EqYvMAtiLdl"};
+const VERSION = "試用 v4.2_20261110";
+const MINOR_AGE = 18; // 監護人簽名門檻，待宇劭確認
+
+const FIELDS = [], BYID = {};
+SPEC.pages.forEach(p => p.blocks.forEach(b => { if (b.id) { b._page = p; FIELDS.push(b); BYID[b.id] = b; } }));
+const ROWFIELDS = FIELDS; // Sheet 欄位順序（含停用欄）
+const st = {};          // 狀態
+const sigs = {};        // id -> {canvas, ctx, dirty}
+const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
+
+/* ---------- 取值（統一成字串，條件與送出都用這個） ---------- */
+const PART_SINGLE = ['頭','頸','胸','腰','薦'];
+const PART_SIDE = ['肩','肘','腕','髖','膝','踝'];
+function val(id){
+  const f = BYID[id], v = st[id];
+  switch (f.type) {
+    case 'check': return v ? '是' : '';
+    case 'multi': return (v || []).join('、');
+    case 'secs': return v ? (v.no ? '無法' : (v.sec ?? '')) + '' : '';
+    case 'parts': {
+      if (!v) return '';
+      const out = [];
+      PART_SINGLE.forEach(p => { if (v[p]) out.push(p); });
+      PART_SIDE.forEach(p => { const L = v[p+'左'], R = v[p+'右']; if (L && R) out.push('雙側'+p); else if (L) out.push('左'+p); else if (R) out.push('右'+p); });
+      if (v.其他) out.push('其他：' + (v.其他文字 || ''));
+      return out.join('、');
+    }
+    case 'repeat': return (v || []).filter(r => r.name || r.ym).map(r => `${r.cat}｜${r.name}｜${r.ym}`).join('；');
+    case 'sig': return sigs[id] && sigs[id].dirty ? '已簽名' : '';
+    case 'mirror': return val(f.of);
+    case 'dob': { const d = dobCalc(v); if (!d.year) return ''; return d.m && d.d ? `${d.year}-${String(d.m).padStart(2,'0')}-${String(d.d).padStart(2,'0')}` : `${d.year}（由年齡推算）`; }
+    default: return v == null ? '' : String(v);
+  }
+}
+function refDate(){ const r = st.K03 ? new Date(st.K03) : new Date(); return isNaN(r) ? new Date() : r; }
+// 年齡、出生年擇一填；月日選填。填年齡 → 回推出生年；填出生年（民國或西元）→ 算年齡
+function dobCalc(v){
+  v = v || {}; const r = refDate(), ry = r.getFullYear();
+  const m = +v.m || 0, d = +v.d || 0;
+  const notYet = m && d && (m > r.getMonth() + 1 || (m === r.getMonth() + 1 && d > r.getDate()));
+  let year = null, age = null;
+  if (v.src === 'year' && v.year) { year = +v.year < 200 ? +v.year + 1911 : +v.year; age = ry - year - (notYet ? 1 : 0); }
+  else if (v.age !== '' && v.age != null && !isNaN(+v.age)) { age = +v.age; year = ry - age - (notYet ? 1 : 0); }
+  if (year && (year < 1900 || year > ry)) year = null;
+  return {year, age: year ? age : null, m, d};
+}
+function age(){ return dobCalc(st.S03).age; }
+function anyYes(list){ return list.some(id => val(id) === '是'); }
+function condOK(c){
+  if (!c) return true;
+  if (c.anyYes) return anyYes(c.anyYes);
+  const v = val(c.if);
+  if ('eq' in c) return v === c.eq;
+  if ('ne' in c) return v !== c.ne;
+  return true;
+}
+function pageOn(p){ return condOK(p.show); }
+function fieldOn(f){
+  if (f.retired) return false;
+  if (!pageOn(f._page)) return false;
+  if (!condOK(f.show)) return false;
+  if (f.minor) { const a = age(); return a != null && a < MINOR_AGE; }
+  return true;
+}
+function isEmpty(f){
+  if (f.type === 'repeat') { const r = st[f.id] || []; return !r.some(x => x.name && x.ym); }
+  if (f.type === 'parts') { return !val(f.id); }
+  return val(f.id) === '';
+}
+function isMissing(f){
+  if (!fieldOn(f)) return false;
+  if (f.reqUnless && val(f.reqUnless)) return false;
+  if (!(f.req || f.reqUnless)) return false;
+  return isEmpty(f);
+}
+
+/* ---------- 畫面 ---------- */
+const wrap = document.getElementById('wrap');
+const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } kids.flat().forEach(c => e.append(c?.nodeType ? c : document.createTextNode(c ?? ''))); return e; };
+
+function optBtn(text, on, round, click){ const b = el('div', {class: 'opt' + (round ? ' round' : '') + (on ? ' on' : ''), onclick: click}, el('span', {class: 'bx'}), text); return b; }
+
+function renderField(f){
+  const box = el('div', {class: 'f ' + (f.w || '') + ' ' + (f.cls || ''), id: 'f_' + f.id});
+  const reqMark = (f.req || f.reqUnless) ? el('span', {class: 'req'}, '＊') : '';
+  const cell = ''; // 對應公版課表格子只留在設定檔，不顯示
+  if (!f.nolabel && f.type !== 'check') box.append(el('div', {class: 'lb'}, f.label, reqMark, cell));
+  const set = (v) => { st[f.id] = v; refresh(); };
+  switch (f.type) {
+    case 'text': case 'tel': case 'email': {
+      const i = el('input', {class: 'line', type: f.type, value: st[f.id] || ''}); i.addEventListener('input', () => set(i.value)); box.append(i); break; }
+    case 'date': {
+      const i = el('input', {class: 'line', type: 'date', value: st[f.id] || ''}); i.addEventListener('input', () => set(i.value)); box.append(i);
+      if (f.age) box.append(el('div', {class: 'age', id: 'ageout'})); break; }
+    case 'number': {
+      const i = el('input', {class: 'line', type: 'number', inputmode: 'decimal', step: 'any', value: st[f.id] ?? ''}); i.addEventListener('input', () => set(i.value));
+      box.append(el('div', {class: 'unitrow'}, i, f.unit ? el('span', {class: 'u'}, f.unit) : '')); break; }
+    case 'textarea': {
+      const t = el('textarea', {class: 'line'}); t.value = st[f.id] || ''; t.addEventListener('input', () => set(t.value));
+      if (f.nolabel) box.append(el('div', {class: 'lb'}, reqMark)); box.append(t); break; }
+    case 'radio': {
+      const o = el('div', {class: 'opts' + (f.col ? ' col' : '')});
+      f.opts.forEach(x => o.append(optBtn(x, st[f.id] === x, true, () => { set(st[f.id] === x ? '' : x); rerender(f.id); })));
+      box.append(o);
+      if (f.suggest) box.append(el('div', {class: 'sug', id: 'sug_' + f.id}));
+      break; }
+    case 'multi': {
+      const o = el('div', {class: 'opts'}); const cur = st[f.id] || [];
+      f.opts.forEach(x => o.append(optBtn(x, cur.includes(x), false, () => {
+        let a = [...(st[f.id] || [])];
+        if (a.includes(x)) a = a.filter(y => y !== x); else { if (f.none && x === f.none) a = [x]; else { a = a.filter(y => y !== f.none); a.push(x); } }
+        set(a); rerender(f.id); })));
+      box.append(o); break; }
+    case 'check': {
+      box.append(el('div', {class: 'opts'}, optBtn(f.label + ((f.req || f.reqUnless) ? ' ＊' : ''), !!st[f.id], false, () => { set(!st[f.id]); rerender(f.id); }), cell)); break; }
+    case 'secs': {
+      const v = st[f.id] || {};
+      const i = el('input', {class: 'line', type: 'number', inputmode: 'decimal', step: 'any', value: v.sec ?? ''});
+      if (v.no) i.disabled = true;
+      i.addEventListener('input', () => set({...(st[f.id] || {}), sec: i.value}));
+      box.append(el('div', {class: 'unitrow'}, i, el('span', {class: 'u'}, '秒'),
+        optBtn('無法', !!v.no, false, () => { const c = st[f.id] || {}; set({...c, no: !c.no}); rerender(f.id); })));
+      break; }
+    case 'mirror': box.append(el('div', {class: 'mirror', id: 'mir_' + f.id})); break;
+    case 'dob': {
+      const v = st[f.id] || (st[f.id] = {});
+      const ia = el('input', {class: 'line', type: 'number', inputmode: 'numeric', value: v.age ?? '', id: 'dob_age'});
+      const iy = el('input', {class: 'line', type: 'number', inputmode: 'numeric', placeholder: '民國或西元都可', value: v.year ?? '', id: 'dob_year'});
+      const sm = el('select', {class: 'line'}), sd = el('select', {class: 'line'});
+      sm.append(el('option', {value: ''}, '月')); for (let i = 1; i <= 12; i++) { const o = el('option', {value: i}, i + ' 月'); if (+v.m === i) o.selected = true; sm.append(o); }
+      sd.append(el('option', {value: ''}, '日')); for (let i = 1; i <= 31; i++) { const o = el('option', {value: i}, i + ' 日'); if (+v.d === i) o.selected = true; sd.append(o); }
+      const sync = () => { const d = dobCalc(v);
+        if (v.src === 'age') iy.value = d.year ? d.year : ''; else if (v.src === 'year') ia.value = d.age ?? '';
+        if (v.src === 'age') v.year = d.year || ''; else v.age = d.age ?? '';
+        st[f.id] = v; refresh(); };
+      ia.addEventListener('input', () => { v.age = ia.value; v.src = 'age'; sync(); });
+      iy.addEventListener('input', () => { v.year = iy.value; v.src = 'year'; sync(); });
+      sm.addEventListener('change', () => { v.m = sm.value; sync(); });
+      sd.addEventListener('change', () => { v.d = sd.value; sync(); });
+      box.append(el('div', {class: 'dobrow'},
+        el('div', {}, el('div', {class: 'sub'}, '年齡'), el('div', {class: 'unitrow'}, ia, el('span', {class: 'u'}, '歲'))),
+        el('div', {class: 'or'}, '或'),
+        el('div', {}, el('div', {class: 'sub'}, '出生年'), el('div', {class: 'unitrow'}, iy, el('span', {class: 'u'}, '年'))),
+        el('div', {}, el('div', {class: 'sub'}, '生日（選填）'), el('div', {class: 'unitrow'}, sm, sd))));
+      box.append(el('div', {class: 'age', id: 'ageout'}));
+      break; }
+    case 'sig': box.append(sigPad(f)); break;
+    case 'parts': box.append(partsUI(f)); break;
+    case 'repeat': box.append(repeatUI(f)); break;
+  }
+  return box;
+}
+
+function render(){
+  wrap.innerHTML = '';
+  SPEC.pages.forEach(p => {
+    const pg = el('div', {class: 'page', id: 'pg_' + p.id});
+    pg.append(el('div', {class: 'ph'}, el('div', {}, el('div', {class: 'brand'}, '練健康 LKK'), el('h1', {}, p.title)), el('div', {class: 'paper'}, p.paper || '')));
+    let grid = el('div', {class: 'grid'}); pg.append(grid);
+    p.blocks.forEach(b => {
+      if (b.type === 'head') {
+        pg.append(el('div', {class: 'sec'}, b.text, b.who ? el('span', {class: 'who ' + (b.who === '教練' ? 'k' : 's')}, b.who + '填') : ''));
+        grid = el('div', {class: 'grid'}); pg.append(grid);
+      } else if (b.type === 'note') {
+        const n = el('div', {class: 'note ' + (b.cls || '')}, b.text); if (b.showNot) n.dataset.shownot = JSON.stringify(b.showNot);
+        grid.append(n);
+      } else if (!b.retired) grid.append(renderField(b));
+    });
+    wrap.append(pg);
+    if (p.show) wrap.append(el('div', {class: 'skipnote noprint', id: 'skip_' + p.id}, '「' + p.title + '」免填：PAR-Q+ 通用 7 題都答「否」。'));
+  });
+  Object.values(sigs).forEach(s => s.restore && s.restore());
+  refresh();
+}
+function rerender(id){ const f = BYID[id], old = document.getElementById('f_' + id); if (!old) return; const n = renderField(f); old.replaceWith(n); refresh(); }
+
+function refresh(){
+  SPEC.pages.forEach(p => {
+    const on = pageOn(p); document.getElementById('pg_' + p.id).classList.toggle('off', !on);
+    const s = document.getElementById('skip_' + p.id); if (s) s.style.display = on ? 'none' : 'block';
+  });
+  FIELDS.forEach(f => { const e = document.getElementById('f_' + f.id); if (e) e.classList.toggle('off', !fieldOn(f)); });
+  document.querySelectorAll('[data-shownot]').forEach(n => n.classList.toggle('off', condOK(JSON.parse(n.dataset.shownot))));
+  const dd = dobCalc(st.S03), a = dd.age, ao = document.getElementById('ageout'); if (ao) ao.textContent = a == null ? '只要填年齡或出生年其中一個，另一個會自動算' : `${a} 歲，西元 ${dd.year} 年（民國 ${dd.year - 1911} 年）出生` + (dd.m && dd.d ? `，${dd.m} 月 ${dd.d} 日` : '') + (a < MINOR_AGE ? '｜未成年，需監護人簽名' : '');
+  FIELDS.filter(f => f.type === 'mirror').forEach(f => { const m = document.getElementById('mir_' + f.id); if (m) m.textContent = val(f.of) || '（會自動帶入第 1 頁姓名）'; });
+  const sg = document.getElementById('sug_K24');
+  if (sg) { const t = parseFloat(val('K12')); sg.textContent = isNaN(t) ? '系統建議：先填五次坐到站' : (t >= 12 ? '系統建議：B版（五次坐到站 ≥ 12 秒）' : '系統建議：A版（請確認能不扶東西自己上下地板；做不到選 B版）'); }
+  const miss = FIELDS.filter(isMissing);
+  document.querySelectorAll('.f.missing').forEach(e => { if (!miss.find(m => 'f_' + m.id === e.id)) e.classList.remove('missing'); });
+  document.getElementById('cnt').innerHTML = miss.length ? `必填還差 <b>${miss.length}</b> 項` : '必填都填好了 ✓';
+  return miss;
+}
+
+/* ---------- 簽名板 ---------- */
+function sigPad(f){
+  const box = el('div', {class: 'sigbox'});
+  const c = el('canvas'); const hint = el('div', {class: 'ph2'}, '請在框內用手指簽名');
+  const clr = el('button', {class: 'btn sm clr noprint', 'data-html2canvas-ignore': 'true'}, '清除');
+  box.append(c, hint, clr);
+  let s = sigs[f.id] || (sigs[f.id] = {dirty: false, data: null});
+  s.canvas = c;
+  const fit = () => { const r = c.getBoundingClientRect(); if (!r.width) return; const dpr = window.devicePixelRatio || 1; c.width = r.width * dpr; c.height = r.height * dpr; const ctx = c.getContext('2d'); ctx.scale(dpr, dpr); ctx.lineWidth = 2.4; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#111'; s.ctx = ctx; if (s.data) { const im = new Image(); im.onload = () => ctx.drawImage(im, 0, 0, r.width, r.height); im.src = s.data; } };
+  s.restore = fit;
+  requestAnimationFrame(fit);
+  let drawing = false, last = null;
+  const pt = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  c.addEventListener('pointerdown', e => { if (!s.ctx) fit(); drawing = true; last = pt(e); c.setPointerCapture(e.pointerId); hint.style.display = 'none'; });
+  c.addEventListener('pointermove', e => { if (!drawing) return; const p = pt(e); s.ctx.beginPath(); s.ctx.moveTo(...last); s.ctx.lineTo(...p); s.ctx.stroke(); last = p; s.dirty = true; });
+  const end = () => { if (!drawing) return; drawing = false; s.data = c.toDataURL('image/png'); refresh(); };
+  c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end);
+  clr.addEventListener('click', () => { s.ctx && s.ctx.clearRect(0, 0, c.width, c.height); s.dirty = false; s.data = null; hint.style.display = ''; refresh(); });
+  if (s.dirty) hint.style.display = 'none';
+  return box;
+}
+function sigImage(id){ // 縮小成 JPEG 存進 Sheet（單格上限 5 萬字）
+  const s = sigs[id]; if (!s || !s.dirty) return '';
+  const o = document.createElement('canvas'); o.width = 360; o.height = 120;
+  const x = o.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, 360, 120); x.drawImage(s.canvas, 0, 0, 360, 120);
+  for (const q of [0.6, 0.4, 0.25]) { const d = o.toDataURL('image/jpeg', q); if (d.length < 45000) return d; }
+  return '已簽名（圖檔過大未存）';
+}
+
+/* ---------- 人形圖＋勾選 ---------- */
+const HITS = [ // [部位鍵, cx, cy, rx, ry]  背面圖：圖的左邊＝學員的左邊
+  ['頭',100,32,17,19],['頸',100,61,9,7],['肩左',66,80,13,10],['肩右',134,80,13,10],['胸',100,96,20,14],
+  ['肘左',52,138,9,10],['肘右',148,138,9,10],['腰',100,142,20,13],['薦',100,170,13,10],
+  ['腕左',42,186,8,8],['腕右',158,186,8,8],['髖左',80,182,11,10],['髖右',120,182,11,10],
+  ['膝左',84,272,11,12],['膝右',116,272,11,12],['踝左',86,358,9,8],['踝右',114,358,9,8]];
+function partsUI(f){
+  const v = st[f.id] || (st[f.id] = {});
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 200 400');
+  svg.innerHTML = `<g class="body">
+    <ellipse cx="100" cy="32" rx="17" ry="20"/><rect x="92" y="50" width="16" height="16" rx="4"/>
+    <path d="M64 70 Q100 62 136 70 L140 120 Q138 150 128 176 L72 176 Q62 150 60 120 Z"/>
+    <path d="M64 72 Q50 78 50 100 L46 186 L38 196 Q42 206 50 196 L58 150 L64 108 Z"/>
+    <path d="M136 72 Q150 78 150 100 L154 186 L162 196 Q158 206 150 196 L142 150 L136 108 Z"/>
+    <path d="M72 172 L98 172 L96 260 L92 352 L96 372 L76 372 L80 352 L74 260 Z"/>
+    <path d="M102 172 L128 172 L126 260 L120 352 L124 372 L104 372 L108 352 L104 260 Z"/></g>
+    <text x="8" y="395">左</text><text x="183" y="395">右</text><text x="62" y="395">（背面圖）</text>`;
+  HITS.forEach(([k, cx, cy, rx, ry]) => { const e = document.createElementNS(NS, 'ellipse'); e.setAttribute('cx', cx); e.setAttribute('cy', cy); e.setAttribute('rx', rx); e.setAttribute('ry', ry); e.setAttribute('class', 'hit' + (v[k] ? ' on' : '')); const t = document.createElementNS(NS, 'title'); t.textContent = k.length > 1 ? k[1] + k[0] : k; e.append(t); e.addEventListener('click', () => toggle(k)); svg.append(e); });
+  const toggle = k => { v[k] = !v[k]; st[f.id] = v; rerender(f.id); };
+  const tb = el('table');
+  PART_SINGLE.forEach(p => tb.append(el('tr', {}, el('td', {class: 'n'}, p), el('td', {}, optBtn('有', !!v[p], false, () => toggle(p))))));
+  PART_SIDE.forEach(p => tb.append(el('tr', {}, el('td', {class: 'n'}, p), el('td', {}, el('div', {class: 'opts'}, optBtn('左', !!v[p + '左'], false, () => toggle(p + '左')), optBtn('右', !!v[p + '右'], false, () => toggle(p + '右')))))));
+  const oi = el('input', {class: 'line', placeholder: '其他部位', value: v.其他文字 || ''}); oi.addEventListener('input', () => { v.其他文字 = oi.value; v.其他 = !!oi.value; st[f.id] = v; refresh(); });
+  tb.append(el('tr', {}, el('td', {class: 'n'}, '其他'), el('td', {}, oi)));
+  const out = el('div', {class: 'age'}, '目前勾選：' + (val(f.id) || '（無）'));
+  return el('div', {class: 'parts'}, svg, el('div', {class: 'plist'}, tb, out));
+}
+
+/* ---------- 治療／手術史（可新增多筆） ---------- */
+function repeatUI(f){
+  const rows = st[f.id] || (st[f.id] = [{cat: '手術', name: '', ym: ''}]);
+  const box = el('div', {class: 'rep'});
+  rows.forEach((r, i) => {
+    const sel = el('select'); ['手術', '其他治療'].forEach(o => { const op = el('option', {}, o); if (r.cat === o) op.selected = true; sel.append(op); });
+    sel.addEventListener('change', () => { r.cat = sel.value; refresh(); });
+    const n = el('input', {class: 'line', placeholder: '名稱（例：右膝人工關節置換）', value: r.name}); n.addEventListener('input', () => { r.name = n.value; refresh(); });
+    const ym = el('input', {class: 'line', placeholder: '年月 2025/03', value: r.ym}); ym.addEventListener('input', () => { r.ym = ym.value; refresh(); });
+    const del = el('button', {class: 'btn sm noprint', 'data-html2canvas-ignore': 'true'}, '✕'); del.addEventListener('click', () => { rows.splice(i, 1); if (!rows.length) rows.push({cat: '手術', name: '', ym: ''}); rerender(f.id); });
+    box.append(el('div', {class: 'row'}, sel, n, ym, del));
+  });
+  const add = el('button', {class: 'btn sm noprint', 'data-html2canvas-ignore': 'true'}, '＋ 新增一筆'); add.addEventListener('click', () => { rows.push({cat: '手術', name: '', ym: ''}); rerender(f.id); });
+  box.append(add);
+  return box;
+}
+
+/* ---------- 底部按鈕 ---------- */
+function gotoMissing(){
+  const m = refresh(); if (!m.length) return;
+  m.forEach(f => document.getElementById('f_' + f.id)?.classList.add('missing'));
+  const e = document.getElementById('f_' + m[0].id); e.scrollIntoView({behavior: 'smooth', block: 'center'}); e.classList.remove('flash'); void e.offsetWidth; e.classList.add('flash');
+}
+document.getElementById('bNext').onclick = gotoMissing;
+document.getElementById('bReset').onclick = () => confirmBox('要清空所有填寫內容嗎？', () => { for (const k in st) delete st[k]; for (const k in sigs) delete sigs[k]; init(); window.scrollTo(0, 0); });
+document.getElementById('bDemo').onclick = demo;
+document.getElementById('bSubmit').onclick = submit;
+
+const modal = document.getElementById('modal'), mbox = document.getElementById('mbox');
+function showModal(...kids){ mbox.innerHTML = ''; kids.forEach(k => mbox.append(k)); modal.classList.add('on'); }
+function closeModal(){ modal.classList.remove('on'); }
+function confirmBox(msg, ok){ showModal(el('h3', {}, msg), el('div', {style: 'display:flex;gap:10px;justify-content:flex-end;margin-top:16px'}, el('button', {class: 'btn', onclick: closeModal}, '取消'), el('button', {class: 'btn pri', onclick: () => { closeModal(); ok(); }}, '確定'))); }
+
+async function demo(){
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  Object.assign(st, {S00: true, K01: '南京', K02: '測試教練', K03: today(), S01: '測試學員' + Math.floor(Math.random() * 90 + 10), S02: pick(['女', '男']),
+    S03: {age: 71, src: 'age', m: 4, d: 12, year: 1955}, S04: '0912345678', S08: '(二)有想運動，還沒開始', K04: 72, K05: 132, K06: 84, K07: 158, K08: 56, K09: 5.9, K10: 18.5, K11: 20.1,
+    K12: 13.4, K13: 3.6, K15: 11, K16: {sec: 6}, K17: {no: true}, K17b: {sec: 3}, K18: {sec: 10}, K19: {sec: 8}, K20: '無法', K21: '完成', K22: '靠得到',
+    S09: ['以上皆無'], S12: '否', S13: '沒有', S14: true, S16: '有', S17: -2.6, S18: -1.2, S19: '有', S20: {'膝左': true, '腰': true}, S21: '會',
+    S22: '想爬山不會膝蓋痛', K24: 'B版', S24: today(), S26: '否', S27: '否', S28: '是', S29: ['因頭暈而失去平衡'], S30: '否', S31: '否', S32: '是', S33: '否',
+    S76: true, S78: today()});
+  FIELDS.filter(f => f._page.id === 'p4' && f.type === 'radio').forEach(f => { st[f.id] = f.cls === 'q-main' ? (f.id === 'S34' ? '有' : '沒有') : '否'; });
+  render();
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  ['S23', 'S79', 'K25'].forEach(id => { const s = sigs[id]; if (!s) return; if (!s.ctx) s.restore(); if (!s.ctx) return; const c = s.canvas, w = c.getBoundingClientRect().width; s.ctx.beginPath(); s.ctx.moveTo(30, 100); for (let x = 30; x < w * 0.6; x += 12) s.ctx.lineTo(x, 70 + Math.sin(x / 9) * 25); s.ctx.stroke(); s.dirty = true; s.data = c.toDataURL('image/png'); });
+  refresh();
+}
+
+/* ---------- 送出：PDF → Drive，再寫一列進 Sheet ---------- */
+let mcpP = null;
+function getMcp(){ if (!(window.claude && window.claude.use)) return Promise.resolve(null); if (!mcpP) mcpP = window.claude.use('mcp').catch(() => null); return mcpP; }
+function errText(e){
+  const c = e && e.code;
+  const m = {needs_reauth: '連線過期：請到 claude.ai 設定 → Connectors 重新連結 ' + (e.server || ''),
+    server_not_connected: '還沒連結 ' + (e.server || '這個服務') + '：請到 claude.ai 設定 → Connectors 加入',
+    not_in_manifest: '這個頁面沒有被允許使用 ' + (e.server || '這個服務') + '（可能按了不允許）',
+    approval_required: '需要你在 claude.ai 按「允許」才能寫入', blocked_by_policy: '組織政策不允許這個動作',
+    server_unavailable: '服務暫時連不上，可能沒寫入也可能已寫入，請先到 Sheet 確認再重送',
+    upstream_error: '連線出錯，可能沒寫入也可能已寫入，請先到 Sheet 確認再重送',
+    tool_error: '對方回報錯誤：' + (e.message || '')};
+  return m[c] || ('錯誤（' + (c || '未知') + '）：' + (e && e.message || e));
+}
+async function makePdf(){
+  document.body.classList.add('printing');
+  try {
+    const {jsPDF} = window.jspdf; let pdf = null;
+    const pages = [...document.querySelectorAll('.page')].filter(p => !p.classList.contains('off'));
+    for (const pg of pages) {
+      const cv = await html2canvas(pg, {scale: 1.15, backgroundColor: '#ffffff', useCORS: true, ignoreElements: e => e.classList?.contains('noprint')});
+      const w = 210, h = w * cv.height / cv.width; const img = cv.toDataURL('image/jpeg', 0.6);
+      if (!pdf) pdf = new jsPDF({unit: 'mm', format: [w, h], orientation: h > w ? 'p' : 'l'}); else pdf.addPage([w, h], h > w ? 'p' : 'l');
+      pdf.addImage(img, 'JPEG', 0, 0, w, h);
+    }
+    return pdf.output('blob');
+  } finally { document.body.classList.remove('printing'); render(); }
+}
+/* ---------- 體驗課分頁對照（題目 → 公版課表格子） ---------- */
+// v27 起：C41 填「失去平衡／失去意識／兩者／是（沒勾哪一種）」；C57 只算 12 個月內的手術；C58 通用 7；C32 可填「沒做過」
+function g3cell(){
+  if (!fieldOn(BYID.S28) || val('S28') !== '是') return '';
+  const ab = st.S29 || [];
+  const a = ab.includes('因頭暈而失去平衡'), b = ab.includes('失去意識');
+  return a && b ? '兩者' : a ? '失去平衡' : b ? '失去意識' : '是（沒勾哪一種）';
+}
+function surgery12m(){
+  if (!fieldOn(BYID.S15)) return false;
+  const fd = new Date(st.K03 || today()); const fm = fd.getFullYear() * 12 + fd.getMonth() + 1;
+  return (st.S15 || []).some(r => { if (r.cat !== '手術' || !r.ym) return false;
+    const m = String(r.ym).match(/(\d{4})\D+(\d{1,2})/); if (!m) return false;
+    return fm - (+m[1] * 12 + +m[2]) <= 12; });
+}
+function courseBlocks(){
+  const on = id => fieldOn(BYID[id]) ? val(id) : '';
+  const num = id => { const v = on(id); return v === '' || isNaN(+v) ? '' : +v; };
+  const V = b => b ? 'V' : '';
+  const dd = dobCalc(st.S03);
+  const S09 = st.S09 || [];
+  const blocks = [
+    ['體驗課!C7:C10', [on('K02'), on('S01'), on('S02'), dd.year && dd.m && dd.d ? `${dd.year}/${dd.m}/${dd.d}` : '']],
+    ['體驗課!C13:C14', [num('K07'), num('K08')]],
+    ['體驗課!C16:C21', [num('K11'), num('K10'), num('K09'), num('K05'), num('K06'), num('K04')]],
+    ['體驗課!C30:C34', [num('K12'), num('K13'), on('S16') === '沒做過' ? '沒做過' : num('S17'), num('S18'), on('K22') === '靠不到' ? 1 : on('K22') === '靠得到' ? 0 : '']],
+    ['體驗課!C39:C51', [V(on('S26') === '是'), V(on('S27') === '是'), g3cell(), V(on('S32') === '是'),
+      V(on('S13') === '有'), V(on('S12') === '是' || on('S37') === '是'), V(on('S38') === '有'), V(on('S41') === '有'),
+      V(on('S46') === '有' || on('S48') === '是'), V(on('S51') === '是' || on('S65') === '是'), V(on('S67') === '有'),
+      V(on('S69') === '是'), V(on('S70') === '是')]],
+    ['體驗課!C53:C57', [V(on('S21') === '會'), V(/^\((一|二)\)/.test(on('S08'))),
+      V(['帕金森氏症', '失智症', '小腦疾病', '前庭疾病／眩暈症', '視力障礙'].some(x => S09.includes(x))),
+      V(on('S41') === '有'), V(surgery12m())]],  // C56 改看 S41（11/10 宇劭定）
+    ['體驗課!C58', [on('S33') === '是' ? '通用7：醫師說要在醫療人員監督下運動' : '']],
+  ];
+  if (!(dd.m && dd.d) && dd.age != null) blocks.push(['體驗課!C11', [dd.age]]); // 沒生日：年齡直接填
+  if (on('K24')) blocks.push(['體驗課!C70', [on('K24')]]);
+  return blocks.map(([range, col]) => ({range, values: col.map(x => [x])}));
+}
+async function makeCourse(mcp){
+  const store = val('K01'), folder = STORE_FOLDER[store];
+  const title = `${val('K03') || today()}_${val('S01')}_公版課表`.replace(/[\\/:*?"<>|]/g, '_');
+  const res = await mcp.callTool('Google Drive', 'copy_file', {fileId: TEMPLATE_ID, parentId: folder, title});
+  const p = res.payload || {}; if (!p.id) throw {code: 'tool_error', message: '複製課表沒拿到檔案 ID'};
+  for (const b of courseBlocks()) await mcp.callTool('Google Sheets', 'update_values', {spreadsheetId: p.id, range: b.range, values: b.values});
+  return {id: p.id, url: 'https://docs.google.com/spreadsheets/d/' + p.id + '/edit', title, store};
+}
+
+let busy = false;
+async function submit(){
+  if (busy) return;
+  const miss = refresh();
+  if (miss.length) {
+    showModal(el('h3', {}, `還有 ${miss.length} 個必填沒填`), el('ul', {}, miss.slice(0, 12).map(f => el('li', {}, `${f._page.title}｜${f.label}`))), miss.length > 12 ? el('div', {class: 'age'}, `……還有 ${miss.length - 12} 項`) : '',
+      el('div', {style: 'display:flex;gap:10px;justify-content:flex-end;margin-top:16px'}, el('button', {class: 'btn', onclick: closeModal}, '關閉'), el('button', {class: 'btn pri', onclick: () => { closeModal(); gotoMissing(); }}, '帶我去第一個')));
+    return;
+  }
+  busy = true; document.getElementById('bSubmit').disabled = true;
+  const li = {}; const steps = el('ul', {class: 'steps'});
+  ['pdf', 'drive', 'course', 'sheet'].forEach(k => { li[k] = el('li', {}); steps.append(li[k]); });
+  const mark = (k, cls, t) => { li[k].innerHTML = ''; li[k].append(el('span', {class: cls}, cls === 'ok' ? '✓ ' : cls === 'bad' ? '✕ ' : '… '), t); };
+  const closeBtn = el('button', {class: 'btn pri', onclick: closeModal}, '關閉'); closeBtn.disabled = true;
+  showModal(el('h3', {}, '送出中'), steps, el('div', {style: 'text-align:right;margin-top:14px'}, closeBtn));
+  mark('pdf', 'run', '產生仿紙本 PDF'); mark('drive', 'run', '存 PDF 到 Drive'); mark('course', 'run', '開公版課表、填好體驗課分頁'); mark('sheet', 'run', '寫進體驗課總表');
+  const now = new Date(); const stamp = now.toLocaleString('zh-TW', {hour12: false});
+  const mcp = await getMcp();
+  let pdfLink = '';
+  try {
+    const blob = await makePdf(); mark('pdf', 'ok', `PDF 產生完成（${(blob.size / 1024).toFixed(0)} KB）`);
+    if (!mcp) { mark('drive', 'bad', '這個畫面不能連 Google（請在 claude.ai 打開本頁）'); pdfLink = '未存（無連線）'; }
+    else {
+      try {
+        const name = `${val('K03') || today()}_${val('K01')}_${val('S01')}_體驗課表單.pdf`.replace(/[\\/:*?"<>|]/g, '_');
+        const lt = await mcp.listTools().catch(() => ({}));
+        const content = lt.fileArgs ? {$file: {data: blob, name, type: 'application/pdf'}} : await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result.split(',')[1]); fr.readAsDataURL(blob); });
+        const res = await mcp.callTool('Google Drive', 'create_file', {title: name, parentId: PDF_FOLDER, contentMimeType: 'application/pdf', disableConversionToGoogleType: true, base64Content: content});
+        const p = res.payload || {}; pdfLink = p.viewUrl || (p.id ? 'https://drive.google.com/file/d/' + p.id + '/view' : '已存（沒拿到連結）');
+        mark('drive', 'ok', '已存到 Drive「體驗課表單PDF（試用）」');
+      } catch (e) { mark('drive', 'bad', 'PDF 沒存到 Drive：' + errText(e)); pdfLink = 'PDF 未存：' + (e.code || ''); }
+    }
+  } catch (e) { mark('pdf', 'bad', 'PDF 產生失敗：' + (e.message || e)); mark('drive', 'bad', '略過'); pdfLink = 'PDF 產生失敗'; }
+
+  let courseLink = '', course = null;
+  if (!mcp) { mark('course', 'bad', '這個畫面不能連 Google'); courseLink = '未開（無連線）'; }
+  else {
+    try { course = await makeCourse(mcp); courseLink = course.url; mark('course', 'ok', `已開課表「${course.title}」，放在 ${course.store} 資料夾`); }
+    catch (e) { mark('course', 'bad', '課表沒開成：' + errText(e) + '（可能已複製但沒填完，請到該店資料夾確認）'); courseLink = '課表未完成：' + (e.code || ''); }
+  }
+  const row = [stamp, VERSION, ...FIELDS.map(f => { if (!fieldOn(f)) return ''; if (f.type === 'sig') return sigImage(f.id); return val(f.id); }), age() ?? '', pdfLink, courseLink];
+  if (!mcp) { mark('sheet', 'bad', '這個畫面不能連 Google，資料沒寫入（請在 claude.ai 打開本頁）'); }
+  else {
+    try {
+      await mcp.callTool('Google Sheets', 'append_values', {spreadsheetId: SHEET_ID, range: SHEET_RANGE, values: [row]});
+      mark('sheet', 'ok', '已寫進「體驗課總表（試用）」，共 ' + row.length + ' 欄');
+      mbox.querySelector('h3').textContent = '送出完成';
+      mbox.append(el('div', {class: 'age', style: 'margin-top:8px;display:flex;gap:18px;flex-wrap:wrap'},
+        course ? el('a', {href: course.url, target: '_blank'}, '打開這位學員的公版課表') : '',
+        el('a', {href: 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit', target: '_blank'}, '打開體驗課總表（試用）')));
+    } catch (e) { mark('sheet', 'bad', '沒寫進 Sheet：' + errText(e)); mbox.querySelector('h3').textContent = '送出沒有完成'; }
+  }
+  closeBtn.disabled = false; busy = false; document.getElementById('bSubmit').disabled = false;
+}
+
+function init(){ FIELDS.forEach(f => { if (f.today && !st[f.id]) st[f.id] = today(); }); render(); }
+init();
+getMcp();
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => Object.values(sigs).forEach(s => s.restore && s.restore()), 200); });
+</script>
+</body>
+</html>

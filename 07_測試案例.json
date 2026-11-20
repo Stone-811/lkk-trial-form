@@ -1,0 +1,1951 @@
+[
+ {
+  "id": "T1",
+  "title": "都沒有標記（對照組）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "sex": "女",
+   "birth": {
+    "age": 45
+   },
+   "height": 160,
+   "weight": 58,
+   "grip_l": 24,
+   "grip_r": 26,
+   "smi": 6.2,
+   "sbp": 118,
+   "dbp": 76,
+   "hr_rest": 70,
+   "sts5": 8.0,
+   "walk4": 3.0,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否"
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "T2",
+  "title": "男 58 歲：五次坐到站 10.5 秒、MOSTAi 剛好四捨五入、血壓 165/88",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "sex": "男",
+   "birth": {
+    "age": 58
+   },
+   "height": 170,
+   "weight": 57.5,
+   "grip_l": 38,
+   "grip_r": 40,
+   "smi": 7.9,
+   "sbp": 165,
+   "dbp": 88,
+   "hr_rest": 74,
+   "sts5": 10.5,
+   "walk4": 3.4,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(四)每週運動超過三次，但還持續不到六個月",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否"
+  },
+  "expected": {
+   "骨折": {
+    "status": "標記",
+    "triggers": [
+     "F3"
+    ],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "標記",
+    "triggers": [
+     "L3"
+    ],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "標記",
+    "triggers": [
+     "H3"
+    ],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "Y",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "Y",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "Y",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "T3",
+  "title": "女 71 歲 64 kg：OSTAi 未滿四捨五入門檻；PAR-Q 通用 3 只勾「失去意識」",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "sex": "女",
+   "birth": {
+    "year": 1955,
+    "month": 3,
+    "day": 2
+   },
+   "height": 155,
+   "weight": 64,
+   "grip_l": 20,
+   "grip_r": 21,
+   "smi": 6.0,
+   "sbp": 128,
+   "dbp": 80,
+   "hr_rest": 72,
+   "sts5": 11.0,
+   "walk4": 3.5,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(三)偶爾想到會運動一下，但每週運動不超過 150 分鐘",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "是",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "parq_g3ab": [
+    "失去意識"
+   ],
+   "parq_1": "沒有",
+   "parq_2": "沒有",
+   "parq_3": "沒有",
+   "parq_4": "沒有",
+   "parq_5": "沒有",
+   "parq_6": "沒有",
+   "parq_7": "沒有",
+   "parq_8": "沒有",
+   "parq_9": "沒有",
+   "parq_10": "沒有"
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "標記",
+    "triggers": [
+     "S1"
+    ],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "Y",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "T4",
+  "title": "手術在 14 個月前＋近期其他治療；PAR-Q 通用 7 答是",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "sex": "女",
+   "birth": {
+    "age": 62
+   },
+   "height": 158,
+   "weight": 60,
+   "grip_l": 21,
+   "grip_r": 22,
+   "smi": 6.0,
+   "sbp": 124,
+   "dbp": 78,
+   "hr_rest": 68,
+   "sts5": 9.0,
+   "walk4": 3.2,
+   "dxa_done": "有",
+   "dxa_t": -0.8,
+   "dxa_z": -0.5,
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "",
+   "surgery": [
+    {
+     "type": "手術",
+     "name": "右膝人工關節置換",
+     "ym": "2025/09"
+    },
+    {
+     "type": "其他治療",
+     "name": "右肩震波",
+     "ym": "2026/05"
+    }
+   ],
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "是",
+   "parq_1": "沒有",
+   "parq_2": "沒有",
+   "parq_3": "沒有",
+   "parq_4": "沒有",
+   "parq_5": "沒有",
+   "parq_6": "沒有",
+   "parq_7": "沒有",
+   "parq_8": "沒有",
+   "parq_9": "沒有",
+   "parq_10": "沒有"
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "標記",
+    "triggers": [
+     "O1"
+    ],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "Y"
+  }
+ },
+ {
+  "id": "T5",
+  "title": "量測還沒做（只填完問卷）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "sex": "女",
+   "birth": {
+    "age": 68
+   },
+   "dxa_done": "沒做過",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(三)偶爾想到會運動一下，但每週運動不超過 150 分鐘",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否"
+  },
+  "expected": {
+   "骨折": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "F2",
+     "F3",
+     "F5"
+    ]
+   },
+   "跌倒": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "L3",
+     "L4",
+     "L5"
+    ]
+   },
+   "心血管": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "H3"
+    ]
+   },
+   "暈厥": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "S3"
+    ]
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "U",
+   "F3": "U",
+   "F4": "N",
+   "F5": "U",
+   "L1": "N",
+   "L2": "N",
+   "L3": "U",
+   "L4": "U",
+   "L5": "U",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "U",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "U",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "T6",
+  "title": "男 70 歲：靠牆靠不到、高血壓、癌症治療中、低血糖症狀",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "sex": "男",
+   "birth": {
+    "age": 70
+   },
+   "height": 168,
+   "weight": 70,
+   "grip_l": 30,
+   "grip_r": 32,
+   "smi": 7.4,
+   "sbp": 150,
+   "dbp": 88,
+   "hr_rest": 76,
+   "sts5": 11.0,
+   "walk4": 3.5,
+   "dxa_done": "沒做過",
+   "wall": "靠不到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "parq_g1": "是",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "是",
+   "parq_g5": "是",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "parq_g1_detail": [
+    "高血壓"
+   ],
+   "parq_1": "沒有",
+   "parq_2": "有",
+   "parq_3": "沒有",
+   "parq_4": "有",
+   "parq_5": "有",
+   "parq_6": "沒有",
+   "parq_7": "沒有",
+   "parq_8": "沒有",
+   "parq_9": "沒有",
+   "parq_10": "沒有",
+   "parq_2a": "否",
+   "parq_2b": "是",
+   "parq_4a": "否",
+   "parq_4b": "否",
+   "parq_5a": "否",
+   "parq_5b": "是",
+   "parq_5c": "否",
+   "parq_5d": "否",
+   "parq_5e": "否"
+  },
+  "expected": {
+   "骨折": {
+    "status": "標記",
+    "triggers": [
+     "F2"
+    ],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "標記",
+    "triggers": [
+     "H1",
+     "H3"
+    ],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "標記",
+    "triggers": [
+     "S2"
+    ],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "標記",
+    "triggers": [
+     "C1"
+    ],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "Y",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "Y",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "Y",
+   "H2": "N",
+   "H3": "Y",
+   "H4": "N",
+   "H5": "N",
+   "S2": "Y",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E1",
+  "title": "OSTAi 邊界：女 65 歲 58 kg（指數 −1.4 → −1，不標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "女",
+   "birth": {
+    "age": 65
+   },
+   "weight": 58
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E2",
+  "title": "OSTAi 邊界：女 65 歲 57.5 kg（−1.5 → −2，要標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "女",
+   "birth": {
+    "age": 65
+   },
+   "weight": 57.5
+  },
+  "expected": {
+   "骨折": {
+    "status": "標記",
+    "triggers": [
+     "F3"
+    ],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "Y",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E3",
+  "title": "MOSTAi 邊界：男 56 歲 57 kg（11.5 → 12，不標；學會網站有浮點誤差的那一筆）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "男",
+   "birth": {
+    "age": 56
+   },
+   "weight": 57
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E4",
+  "title": "MOSTAi 邊界：男 61 歲 57 kg（11.0，要標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "男",
+   "birth": {
+    "age": 61
+   },
+   "weight": 57
+  },
+  "expected": {
+   "骨折": {
+    "status": "標記",
+    "triggers": [
+     "F3"
+    ],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "Y",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E5",
+  "title": "MOSTAi：男 70 歲 61 kg（11.3 → 11，要標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "男",
+   "birth": {
+    "age": 70
+   },
+   "weight": 61
+  },
+  "expected": {
+   "骨折": {
+    "status": "標記",
+    "triggers": [
+     "F3"
+    ],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "Y",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E6",
+  "title": "五次坐到站：45 歲 剛好 10 秒（未滿 65 歲切點 10，要標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 10,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "男",
+   "birth": {
+    "age": 45
+   },
+   "weight": 80
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "標記",
+    "triggers": [
+     "L3"
+    ],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "Y",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E7",
+  "title": "五次坐到站：70 歲 11.9 秒（65 歲以上切點 12，不標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 11.9,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "男",
+   "birth": {
+    "age": 70
+   },
+   "weight": 80
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E8",
+  "title": "五次坐到站 11 秒但沒有年齡（無法判斷）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 11,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "女",
+   "birth": {},
+   "weight": 60
+  },
+  "expected": {
+   "骨折": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "F3",
+     "F5"
+    ]
+   },
+   "跌倒": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "L3",
+     "L5"
+    ]
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "U",
+   "F4": "N",
+   "F5": "U",
+   "L1": "N",
+   "L2": "N",
+   "L3": "U",
+   "L4": "N",
+   "L5": "U",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E9",
+  "title": "通用 3 兩格都勾（跌倒＋暈厥都標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "是",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "女",
+   "birth": {
+    "age": 70
+   },
+   "weight": 60,
+   "parq_g3ab": [
+    "因頭暈而失去平衡",
+    "失去意識"
+   ],
+   "parq_1": "沒有",
+   "parq_2": "沒有",
+   "parq_3": "沒有",
+   "parq_4": "沒有",
+   "parq_5": "沒有",
+   "parq_6": "沒有",
+   "parq_7": "沒有",
+   "parq_8": "沒有",
+   "parq_9": "沒有",
+   "parq_10": "沒有"
+  },
+  "expected": {
+   "骨折": {
+    "status": "標記",
+    "triggers": [
+     "F3"
+    ],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "標記",
+    "triggers": [
+     "L6"
+    ],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "標記",
+    "triggers": [
+     "S1"
+    ],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "Y",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "Y",
+   "S1": "Y",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E10",
+  "title": "通用 3 答是但沒勾哪一種（跌倒、暈厥都資料未齊）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "是",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "女",
+   "birth": {
+    "age": 70
+   },
+   "weight": 60,
+   "parq_g3ab": [],
+   "parq_1": "沒有",
+   "parq_2": "沒有",
+   "parq_3": "沒有",
+   "parq_4": "沒有",
+   "parq_5": "沒有",
+   "parq_6": "沒有",
+   "parq_7": "沒有",
+   "parq_8": "沒有",
+   "parq_9": "沒有",
+   "parq_10": "沒有"
+  },
+  "expected": {
+   "骨折": {
+    "status": "標記",
+    "triggers": [
+     "F3"
+    ],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "L6"
+    ]
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "S1"
+    ]
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "Y",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "U",
+   "S1": "U",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E11",
+  "title": "手術在 12 個月內（2025/11，填寫 2026/11，要標）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "沒做過",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "女",
+   "birth": {
+    "age": 50
+   },
+   "weight": 60,
+   "surgery": [
+    {
+     "type": "手術",
+     "name": "x",
+     "ym": "2025/11"
+    }
+   ]
+  },
+  "expected": {
+   "骨折": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "標記",
+    "triggers": [
+     "P3"
+    ],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "N",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "Y",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ },
+ {
+  "id": "E12",
+  "title": "有做過骨密但 T、Z 都沒填（資料未齊）",
+  "answers": {
+   "fill_date": "2026-11-10",
+   "height": 160,
+   "dxa_done": "有",
+   "wall": "靠得到",
+   "hx_spine_fx": "沒有",
+   "sym_spine": "不會",
+   "exercise_stage": "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上",
+   "dx": [
+    "以上皆無"
+   ],
+   "med_steroid": "否",
+   "no_surgery_12m": "是",
+   "grip_l": 40,
+   "grip_r": 40,
+   "smi": 8,
+   "sbp": 120,
+   "dbp": 80,
+   "sts5": 8,
+   "walk4": 3,
+   "parq_g1": "否",
+   "parq_g2": "否",
+   "parq_g3": "否",
+   "parq_g4": "否",
+   "parq_g5": "否",
+   "parq_g6": "否",
+   "parq_g7": "否",
+   "sex": "女",
+   "birth": {
+    "age": 50
+   },
+   "weight": 60,
+   "dxa_t": null,
+   "dxa_z": null
+  },
+  "expected": {
+   "骨折": {
+    "status": "資料未齊",
+    "triggers": [],
+    "undetermined": [
+     "F1"
+    ]
+   },
+   "跌倒": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "心血管": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "暈厥": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "癌症": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "術後": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   },
+   "其他": {
+    "status": "未標記",
+    "triggers": [],
+    "undetermined": []
+   }
+  },
+  "conditions": {
+   "F1": "U",
+   "F2": "N",
+   "F3": "N",
+   "F4": "N",
+   "F5": "N",
+   "L1": "N",
+   "L2": "N",
+   "L3": "N",
+   "L4": "N",
+   "L5": "N",
+   "L6": "N",
+   "S1": "N",
+   "C1": "N",
+   "P1": "N",
+   "P2": "N",
+   "P3": "N",
+   "H1": "N",
+   "H2": "N",
+   "H3": "N",
+   "H4": "N",
+   "H5": "N",
+   "S2": "N",
+   "S3": "N",
+   "O1": "N"
+  }
+ }
+]

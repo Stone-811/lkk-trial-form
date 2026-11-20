@@ -1,0 +1,2487 @@
+{
+ "version": "題目清單 v2（2026-11-08）＋11/10 定案（標記預覽要做、C56 看 S41）",
+ "generated": "2026-11-10",
+ "sections": [
+  {
+   "section": "0",
+   "title": "開始",
+   "who": "教練／學員",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "K01",
+     "code": "store",
+     "label": "門市",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "南京",
+      "西門",
+      "七張",
+      "松江"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "D",
+     "template_cell": "（存檔資料夾用）",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K02",
+     "code": "coach",
+     "label": "負責教練",
+     "type": "text",
+     "type_zh": "簡答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "E",
+     "template_cell": "C7",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K03",
+     "code": "fill_date",
+     "label": "填寫日期",
+     "type": "date",
+     "type_zh": "日期",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "F",
+     "template_cell": "",
+     "rule": "P3（算 12 個月）",
+     "new_in_v2": false
+    },
+    {
+     "id": "S00",
+     "code": "consent_privacy",
+     "label": "我已閱讀上述個人資料蒐集說明，並同意練健康蒐集與使用我的資料",
+     "type": "check",
+     "type_zh": "勾選",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "C",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "1",
+   "title": "基本資料",
+   "who": "學員",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "S01",
+     "code": "name",
+     "label": "姓名",
+     "type": "text",
+     "type_zh": "簡答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "G",
+     "template_cell": "C8",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S02",
+     "code": "sex",
+     "label": "性別",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "女",
+      "男"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "H",
+     "template_cell": "C9",
+     "rule": "F3、F5d、L5",
+     "new_in_v2": false
+    },
+    {
+     "id": "S03",
+     "code": "birth",
+     "label": "年齡／出生年",
+     "type": "dob",
+     "type_zh": "年齡或出生年＋月日（選填）",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "年齡、出生年（民國或西元）擇一填，另一個自動算；月日選填",
+     "sheet_column": "I",
+     "template_cell": "C10（有月日）／C11（只有年齡）",
+     "rule": "F3、F5f、L3、L5",
+     "new_in_v2": false
+    },
+    {
+     "id": "S04",
+     "code": "phone",
+     "label": "聯絡電話",
+     "type": "tel",
+     "type_zh": "電話",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "K",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S05",
+     "code": "email",
+     "label": "Email",
+     "type": "email",
+     "type_zh": "Email",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "L",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S07",
+     "code": "occupation",
+     "label": "職業",
+     "type": "text",
+     "type_zh": "簡答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "J",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S08",
+     "code": "exercise_stage",
+     "label": "目前運動習慣",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "(一)完全沒有運動",
+      "(二)有想運動，還沒開始",
+      "(三)偶爾想到會運動一下，但每週運動不超過 150 分鐘",
+      "(四)每週運動超過三次，但還持續不到六個月",
+      "(五)每週保持運動至少三次，且運動習慣維持超過六個月以上"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "N",
+     "template_cell": "C54",
+     "rule": "F5c",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "2",
+   "title": "PAR-Q+ 通用 7 題",
+   "who": "學員",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "S26",
+     "code": "parq_g1",
+     "label": "1. 醫生曾經告知您有心血管相關狀況或是高血壓？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "BC",
+     "template_cell": "C39",
+     "rule": "H1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S26a",
+     "code": "parq_g1_detail",
+     "label": "請勾選",
+     "type": "multi",
+     "type_zh": "複選",
+     "options": [
+      "心血管相關狀況",
+      "高血壓"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S26",
+      "eq": "是"
+     },
+     "show_note": "S26＝是",
+     "sheet_column": "BD",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S27",
+     "code": "parq_g2",
+     "label": "2. 曾在休息時、日常休閒活動或是運動中感覺到胸悶嗎？（如果是因為過度換氣引起或有關，包含在劇烈運動時暈眩請勾否）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "BE",
+     "template_cell": "C40",
+     "rule": "H4",
+     "new_in_v2": false
+    },
+    {
+     "id": "S28",
+     "code": "parq_g3",
+     "label": "3. 近一年內有過暈眩、失去平衡或是失去意識嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "BF",
+     "template_cell": "C41",
+     "rule": "L6、S1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S29",
+     "code": "parq_g3ab",
+     "label": "是哪一種？（可複選）",
+     "type": "multi",
+     "type_zh": "複選",
+     "options": [
+      "因頭暈而失去平衡",
+      "失去意識"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S28",
+      "eq": "是"
+     },
+     "show_note": "S28＝是",
+     "sheet_column": "BG",
+     "template_cell": "",
+     "rule": "L6（g3a）、S1（g3b）",
+     "new_in_v2": false
+    },
+    {
+     "id": "S30",
+     "code": "parq_g4",
+     "label": "4. 曾經患有慢性疾病（心臟相關狀況跟高血壓除外）？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "BH",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S30a",
+     "code": "parq_g4_note",
+     "label": "請填寫",
+     "type": "text",
+     "type_zh": "簡答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S30",
+      "eq": "是"
+     },
+     "show_note": "S30＝是",
+     "sheet_column": "BI",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S31",
+     "code": "parq_g5",
+     "label": "5. 目前有在服用慢性病的處方藥物嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "BJ",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S31a",
+     "code": "parq_g5_note",
+     "label": "請填寫病症及藥物名稱",
+     "type": "text",
+     "type_zh": "簡答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S31",
+      "eq": "是"
+     },
+     "show_note": "S31＝是",
+     "sheet_column": "BK",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S32",
+     "code": "parq_g6",
+     "label": "6. 目前是否有（或過去 12 個月期間）骨骼、關節或軟組織（肌肉、肌腱、韌帶等）相關健康問題，可能會因為從事體能活動而惡化？（如果過去曾有相關的問題，但目前不會對你從事體能活動造成任何影響或限制請回答否）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "BL",
+     "template_cell": "C42",
+     "rule": "P1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S33",
+     "code": "parq_g7",
+     "label": "7. 醫生是否曾告知只能在醫療人員的監督下做運動？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "BM",
+     "template_cell": "",
+     "rule": "其他",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "3",
+   "title": "PAR-Q+ 追問 1–10",
+   "who": "學員",
+   "section_show_if": {
+    "anyYes": [
+     "S26",
+     "S27",
+     "S28",
+     "S30",
+     "S31",
+     "S32",
+     "S33"
+    ]
+   },
+   "items": [
+    {
+     "id": "S34",
+     "code": "parq_1",
+     "label": "1. 您有關節炎、骨質疏鬆症或是背部問題嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "BN",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S35",
+     "code": "parq_1a",
+     "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S34",
+      "eq": "有"
+     },
+     "show_note": "S34＝有",
+     "sheet_column": "BO",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S36",
+     "code": "parq_1b",
+     "label": "b. 是否有因關節問題引起的疼痛，包含近期發生的骨折、骨質疏鬆症引起的骨折或癌症，脊椎問題、椎骨位移（例如：椎間盤滑脫）或是椎弓骨折、椎弓解離等健康狀況？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S34",
+      "eq": "有"
+     },
+     "show_note": "S34＝有",
+     "sheet_column": "BP",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S37",
+     "code": "parq_1c",
+     "label": "c. 您是否定期注射類固醇或是服用類固醇藥物超過三個月？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S34",
+      "eq": "有"
+     },
+     "show_note": "S34＝有",
+     "sheet_column": "BQ",
+     "template_cell": "C44",
+     "rule": "F5b",
+     "new_in_v2": false
+    },
+    {
+     "id": "S38",
+     "code": "parq_2",
+     "label": "2. 現在有任何種類的癌症嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "BR",
+     "template_cell": "C45",
+     "rule": "C1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S39",
+     "code": "parq_2a",
+     "label": "a. 您是否包括以下任何類型的癌症：肺／支氣管癌、多發性骨髓瘤（漿細胞癌）、頭部和／或頸部？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S38",
+      "eq": "有"
+     },
+     "show_note": "S38＝有",
+     "sheet_column": "BS",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S40",
+     "code": "parq_2b",
+     "label": "b. 您目前是否正在接受癌症治療（例如化療或放療）？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S38",
+      "eq": "有"
+     },
+     "show_note": "S38＝有",
+     "sheet_column": "BT",
+     "template_cell": "C45",
+     "rule": "C1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S41",
+     "code": "parq_3",
+     "label": "3. 您有心臟或心血管疾病嗎？包括冠狀動脈疾病、心臟衰竭、心律不整",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "BU",
+     "template_cell": "C46、C56",
+     "rule": "H2",
+     "new_in_v2": false
+    },
+    {
+     "id": "S42",
+     "code": "parq_3a",
+     "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S41",
+      "eq": "有"
+     },
+     "show_note": "S41＝有",
+     "sheet_column": "BV",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S43",
+     "code": "parq_3b",
+     "label": "b. 您是否有需要醫療介入的不規則心跳？如：心房顫動、室性早搏",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S41",
+      "eq": "有"
+     },
+     "show_note": "S41＝有",
+     "sheet_column": "BW",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S44",
+     "code": "parq_3c",
+     "label": "c. 您是否有慢性的心臟衰竭？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S41",
+      "eq": "有"
+     },
+     "show_note": "S41＝有",
+     "sheet_column": "BX",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S45",
+     "code": "parq_3d",
+     "label": "d. 您是否已經確診冠狀動脈疾病，並且在過去兩個月內沒有規律的運動？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S41",
+      "eq": "有"
+     },
+     "show_note": "S41＝有",
+     "sheet_column": "BY",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S46",
+     "code": "parq_4",
+     "label": "4. 您現在有高血壓嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "BZ",
+     "template_cell": "C47",
+     "rule": "H3",
+     "new_in_v2": false
+    },
+    {
+     "id": "S47",
+     "code": "parq_4a",
+     "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S46",
+      "eq": "有"
+     },
+     "show_note": "S46＝有",
+     "sheet_column": "CA",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S48",
+     "code": "parq_4b",
+     "label": "b. 不論吃藥或沒吃藥的情況下，您的血壓是否等於或超過 160/90？（如果不知道請勾「是」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S46",
+      "eq": "有"
+     },
+     "show_note": "S46＝有",
+     "sheet_column": "CB",
+     "template_cell": "C47",
+     "rule": "H3",
+     "new_in_v2": false
+    },
+    {
+     "id": "S49",
+     "code": "parq_5",
+     "label": "5. 您現在有代謝相關疾病嗎？包含糖尿病前期、第一型及第二型糖尿病",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "CC",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S50",
+     "code": "parq_5a",
+     "label": "a. 您是否經常難以透過飲食、藥物、醫生處方來控制血糖水平？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S49",
+      "eq": "有"
+     },
+     "show_note": "S49＝有",
+     "sheet_column": "CD",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S51",
+     "code": "parq_5b",
+     "label": "b. 您是否經常在日常生活中或運動後有低血糖症的跡象和症狀？（顫抖、緊張、異常的煩躁、異常出汗、頭暈、精神錯亂、說話困難、虛弱或疲倦）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S49",
+      "eq": "有"
+     },
+     "show_note": "S49＝有",
+     "sheet_column": "CE",
+     "template_cell": "C48",
+     "rule": "S2",
+     "new_in_v2": false
+    },
+    {
+     "id": "S52",
+     "code": "parq_5c",
+     "label": "c. 糖尿病併發症的跡象或症狀，例如心臟或血管疾病和／或會影響您的眼睛、腎臟或腳趾和腳的感覺的併發症？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S49",
+      "eq": "有"
+     },
+     "show_note": "S49＝有",
+     "sheet_column": "CF",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S53",
+     "code": "parq_5d",
+     "label": "d. 您是否有其他代謝疾病（例如目前與妊娠相關的糖尿病、慢性腎病或肝臟問題）？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S49",
+      "eq": "有"
+     },
+     "show_note": "S49＝有",
+     "sheet_column": "CG",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S54",
+     "code": "parq_5e",
+     "label": "e. 您是否打算在不久的將來從事對您來說不習慣的高（或劇烈）強度的運動？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S49",
+      "eq": "有"
+     },
+     "show_note": "S49＝有",
+     "sheet_column": "CH",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S55",
+     "code": "parq_6",
+     "label": "6. 您有任何心理健康問題或學習困難？（包括阿茲海默症、癡呆症、憂鬱症、焦慮症、飲食失調、精神病、智力障礙、唐氏綜合症）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "CI",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S56",
+     "code": "parq_6a",
+     "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S55",
+      "eq": "有"
+     },
+     "show_note": "S55＝有",
+     "sheet_column": "CJ",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S57",
+     "code": "parq_6b",
+     "label": "b. 您是否患有唐氏綜合症和影響神經或肌肉的背部問題？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S55",
+      "eq": "有"
+     },
+     "show_note": "S55＝有",
+     "sheet_column": "CK",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S58",
+     "code": "parq_7",
+     "label": "7. 你有呼吸系統疾病嗎？包括慢性阻塞性肺病、哮喘、肺動脈高血壓",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "CL",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S59",
+     "code": "parq_7a",
+     "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S58",
+      "eq": "有"
+     },
+     "show_note": "S58＝有",
+     "sheet_column": "CM",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S60",
+     "code": "parq_7b",
+     "label": "b. 您的醫生是否曾說過您在休息或運動時的血氧水平低或需要氧氣治療？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S58",
+      "eq": "有"
+     },
+     "show_note": "S58＝有",
+     "sheet_column": "CN",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S61",
+     "code": "parq_7c",
+     "label": "c. 如果患有哮喘病，您目前是否有胸悶、喘息、呼吸困難、持續咳嗽的症狀（超過 2 天／週），或者您在上週使用過兩次以上的救援藥物？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S58",
+      "eq": "有"
+     },
+     "show_note": "S58＝有",
+     "sheet_column": "CO",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S62",
+     "code": "parq_7d",
+     "label": "d. 你的醫生有沒有說過你的肺部血管有高血壓？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S58",
+      "eq": "有"
+     },
+     "show_note": "S58＝有",
+     "sheet_column": "CP",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S63",
+     "code": "parq_8",
+     "label": "8. 你有脊髓損傷嗎？這包括四肢癱瘓或半身不遂",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "CQ",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S64",
+     "code": "parq_8a",
+     "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S63",
+      "eq": "有"
+     },
+     "show_note": "S63＝有",
+     "sheet_column": "CR",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S65",
+     "code": "parq_8b",
+     "label": "b. 您是否經常表現出明顯的低靜息血壓，引起頭暈或昏厥？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S63",
+      "eq": "有"
+     },
+     "show_note": "S63＝有",
+     "sheet_column": "CS",
+     "template_cell": "C48",
+     "rule": "S2",
+     "new_in_v2": false
+    },
+    {
+     "id": "S66",
+     "code": "parq_8c",
+     "label": "c. 您的醫生是否表明您有突發性的高血壓（被稱為自主的反射異常）？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S63",
+      "eq": "有"
+     },
+     "show_note": "S63＝有",
+     "sheet_column": "CT",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S67",
+     "code": "parq_9",
+     "label": "9. 你有中風嗎？這包括暫時性腦缺血發作（TIA）或腦血管中風",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "CU",
+     "template_cell": "C49",
+     "rule": "L1、H5",
+     "new_in_v2": false
+    },
+    {
+     "id": "S68",
+     "code": "parq_9a",
+     "label": "a. 您是否難以透過藥物或醫生處方控制病情？（如果目前沒有服用藥物或其他治療請勾「否」）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S67",
+      "eq": "有"
+     },
+     "show_note": "S67＝有",
+     "sheet_column": "CV",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S69",
+     "code": "parq_9b",
+     "label": "b. 您在步行或行動方面有任何障礙嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S67",
+      "eq": "有"
+     },
+     "show_note": "S67＝有",
+     "sheet_column": "CW",
+     "template_cell": "C50",
+     "rule": "L1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S70",
+     "code": "parq_9c",
+     "label": "c. 在過去 6 個月內，您是否經歷過中風或神經或肌肉損傷？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S67",
+      "eq": "有"
+     },
+     "show_note": "S67＝有",
+     "sheet_column": "CX",
+     "template_cell": "C51",
+     "rule": "P2",
+     "new_in_v2": false
+    },
+    {
+     "id": "S71",
+     "code": "parq_10",
+     "label": "10. 您是否有以上未列出的任何其他疾病，或者您是否有兩種或多種疾病？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "anyYes": [
+       "S26",
+       "S27",
+       "S28",
+       "S30",
+       "S31",
+       "S32",
+       "S33"
+      ]
+     },
+     "show_note": "（整段）通用 7 題任一答「是」",
+     "sheet_column": "CY",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S72",
+     "code": "parq_10a",
+     "label": "a. 在過去一年中，你是否曾因頭部受傷而導致昏厥或失去知覺，或是被診斷出腦震盪？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S71",
+      "eq": "有"
+     },
+     "show_note": "S71＝有",
+     "sheet_column": "CZ",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S73",
+     "code": "parq_10b",
+     "label": "b. 您是否有未列出的醫療狀況（例如癲癇、神經系統疾病、腎臟問題）？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S71",
+      "eq": "有"
+     },
+     "show_note": "S71＝有",
+     "sheet_column": "DA",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S74",
+     "code": "parq_10c",
+     "label": "c. 您目前是否患有兩種或多種疾病？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S71",
+      "eq": "有"
+     },
+     "show_note": "S71＝有",
+     "sheet_column": "DB",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S75",
+     "code": "parq_10_note",
+     "label": "請列出您的身體狀況，以及列出任何相關藥物",
+     "type": "textarea",
+     "type_zh": "長答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": {
+      "if": "S71",
+      "eq": "有"
+     },
+     "show_note": "S71＝有",
+     "sheet_column": "DC",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "4",
+   "title": "補問疾病",
+   "who": "學員",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "S09",
+     "code": "dx",
+     "label": "現有特殊疾病（可複選）",
+     "type": "multi",
+     "type_zh": "複選",
+     "options": [
+      "帕金森氏症",
+      "失智症",
+      "小腦疾病",
+      "前庭疾病／眩暈症",
+      "視力障礙",
+      "其他神經系統疾病",
+      "以上皆無"
+     ],
+     "exclusive_option": "以上皆無",
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AJ",
+     "template_cell": "C55",
+     "rule": "L2",
+     "new_in_v2": false
+    },
+    {
+     "id": "S10",
+     "code": "dx_other",
+     "label": "其他疾病：請寫疾病名稱",
+     "type": "text",
+     "type_zh": "簡答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AK",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S11",
+     "code": "history",
+     "label": "過去病史",
+     "type": "text",
+     "type_zh": "簡答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AL",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "5",
+   "title": "詳細詢問",
+   "who": "學員填、教練在旁",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "S12",
+     "code": "med_steroid",
+     "label": "目前是否長期（3 個月以上）服用或注射類固醇？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "是",
+      "否"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "S37（PAR-Q+ 1c）沒出現時才問；S37 有答，S12 自動帶 S37 的答案",
+     "sheet_column": "AM",
+     "template_cell": "C44",
+     "rule": "F5b",
+     "new_in_v2": false
+    },
+    {
+     "id": "S13",
+     "code": "hx_spine_fx",
+     "label": "醫師是否說過您的脊椎有壓迫性骨折？（例如跌倒、搬東西或咳嗽後脊椎骨折）",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有",
+      "不確定"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AN",
+     "template_cell": "C43",
+     "rule": "F4",
+     "new_in_v2": false
+    },
+    {
+     "id": "S14",
+     "code": "no_surgery_12m",
+     "label": "過去 12 個月內沒有手術",
+     "type": "check",
+     "type_zh": "勾選",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AO",
+     "template_cell": "C57",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S15",
+     "code": "surgery",
+     "label": "治療／手術史（可新增多筆）",
+     "type": "repeat",
+     "type_zh": "可新增多筆",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S14",
+      "ne": "是"
+     },
+     "show_note": "S14 沒勾",
+     "sheet_column": "AP",
+     "template_cell": "C57",
+     "rule": "P3",
+     "new_in_v2": false
+    },
+    {
+     "id": "S16",
+     "code": "dxa_done",
+     "label": "有做過骨密度檢查嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒做過"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AQ",
+     "template_cell": "",
+     "rule": "F1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S17",
+     "code": "dxa_t",
+     "label": "骨密度 T score",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": true,
+     "required": false,
+     "show_if": {
+      "if": "S16",
+      "eq": "有"
+     },
+     "show_note": "S16＝有",
+     "sheet_column": "AR",
+     "template_cell": "C32",
+     "rule": "F1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S18",
+     "code": "dxa_z",
+     "label": "骨密度 Z score",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": true,
+     "required": false,
+     "show_if": {
+      "if": "S16",
+      "eq": "有"
+     },
+     "show_note": "S16＝有",
+     "sheet_column": "AS",
+     "template_cell": "C33",
+     "rule": "F1",
+     "new_in_v2": false
+    },
+    {
+     "id": "S19",
+     "code": "pain_any",
+     "label": "目前有不舒服的關節或部位嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "有",
+      "沒有"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AT",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S20",
+     "code": "pain_sites",
+     "label": "請點人形圖或在右邊勾選（可複選）",
+     "type": "parts",
+     "type_zh": "人形圖＋部位勾選",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": {
+      "if": "S19",
+      "eq": "有"
+     },
+     "show_note": "S19＝有",
+     "sheet_column": "AU",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S21",
+     "code": "sym_spine",
+     "label": "最近彎腰或轉身時，背部會痛嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "會",
+      "不會"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AV",
+     "template_cell": "C53",
+     "rule": "F5a",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "6",
+   "title": "標記預覽（11/10 定：要做，不收資料）",
+   "who": "教練",
+   "section_show_if": null,
+   "items": []
+  },
+  {
+   "section": "7",
+   "title": "量測",
+   "who": "教練",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "K05",
+     "code": "sbp",
+     "label": "收縮壓",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "mmHg",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "P",
+     "template_cell": "C19",
+     "rule": "H3、S3",
+     "new_in_v2": false
+    },
+    {
+     "id": "K06",
+     "code": "dbp",
+     "label": "舒張壓",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "mmHg",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "Q",
+     "template_cell": "C20",
+     "rule": "H3",
+     "new_in_v2": false
+    },
+    {
+     "id": "K04",
+     "code": "hr_rest",
+     "label": "安靜心率",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "bpm",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "O",
+     "template_cell": "C21",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K11",
+     "code": "grip_r",
+     "label": "右手握力",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "kg",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "V",
+     "template_cell": "C16",
+     "rule": "F5d、L5",
+     "new_in_v2": false
+    },
+    {
+     "id": "K10",
+     "code": "grip_l",
+     "label": "左手握力",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "kg",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "U",
+     "template_cell": "C17",
+     "rule": "F5d、L5",
+     "new_in_v2": false
+    },
+    {
+     "id": "K07",
+     "code": "height",
+     "label": "身高",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "cm",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "R",
+     "template_cell": "C13",
+     "rule": "F5e",
+     "new_in_v2": false
+    },
+    {
+     "id": "K08",
+     "code": "weight",
+     "label": "體重",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "kg",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "S",
+     "template_cell": "C14",
+     "rule": "F3、F5e",
+     "new_in_v2": false
+    },
+    {
+     "id": "K09",
+     "code": "smi",
+     "label": "SMI",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "kg/m²",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "T",
+     "template_cell": "C18",
+     "rule": "F5d、L5",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "8",
+   "title": "動作評估",
+   "who": "教練",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "K12",
+     "code": "sts5",
+     "label": "五次坐到站",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "秒",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "W",
+     "template_cell": "C30",
+     "rule": "L3",
+     "new_in_v2": false
+    },
+    {
+     "id": "K15",
+     "code": "sts30",
+     "label": "三十秒坐到站",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "次",
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "Z",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K20",
+     "code": "slsts_l",
+     "label": "單腳椅子起立｜左",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "完成",
+      "無法"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AG",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K21",
+     "code": "slsts_r",
+     "label": "單腳椅子起立｜右",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "完成",
+      "無法"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AH",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K22",
+     "code": "wall",
+     "label": "靠牆站：後腦勺靠得到牆嗎？",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "靠得到",
+      "靠不到"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AI",
+     "template_cell": "C34（靠得到＝0、靠不到＝1）",
+     "rule": "F2",
+     "new_in_v2": false
+    },
+    {
+     "id": "K18",
+     "code": "tandem_l",
+     "label": "一字型站｜左腳在前",
+     "type": "secs",
+     "type_zh": "秒數＋□無法",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AE",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K19",
+     "code": "tandem_r",
+     "label": "一字型站｜右腳在前",
+     "type": "secs",
+     "type_zh": "秒數＋□無法",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AF",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K16",
+     "code": "sls_l",
+     "label": "單腳站｜左",
+     "type": "secs",
+     "type_zh": "秒數＋□無法",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AA",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K16b",
+     "code": "tiptoe_r",
+     "label": "（左腳無法）右腳墊腳站",
+     "type": "secs",
+     "type_zh": "秒數＋□無法",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": {
+      "if": "K16",
+      "eq": "無法"
+     },
+     "show_note": "K16＝無法 才出現",
+     "sheet_column": "AB",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K17",
+     "code": "sls_r",
+     "label": "單腳站｜右",
+     "type": "secs",
+     "type_zh": "秒數＋□無法",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AC",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K17b",
+     "code": "tiptoe_l",
+     "label": "（右腳無法）左腳墊腳站",
+     "type": "secs",
+     "type_zh": "秒數＋□無法",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": {
+      "if": "K17",
+      "eq": "無法"
+     },
+     "show_note": "K17＝無法 才出現",
+     "sheet_column": "AD",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K13",
+     "code": "walk4",
+     "label": "4 公尺行走",
+     "type": "number",
+     "type_zh": "數字",
+     "options": null,
+     "exclusive_option": null,
+     "unit": "秒",
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "X",
+     "template_cell": "C31",
+     "rule": "L4",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "9",
+   "title": "訓練規劃",
+   "who": "學員＋教練",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "S22",
+     "code": "goal",
+     "label": "健身目標及動機",
+     "type": "textarea",
+     "type_zh": "長答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AW",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K23",
+     "code": "plan_note",
+     "label": "課程進度規劃",
+     "type": "textarea",
+     "type_zh": "長答",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AX",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K24",
+     "code": "template_version",
+     "label": "32 堂課表版本",
+     "type": "radio",
+     "type_zh": "單選",
+     "options": [
+      "A版",
+      "B版",
+      "不套用"
+     ],
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "AY",
+     "template_cell": "C70",
+     "rule": "",
+     "new_in_v2": false
+    }
+   ]
+  },
+  {
+   "section": "10",
+   "title": "聲明與簽名",
+   "who": "學員＋教練",
+   "section_show_if": null,
+   "items": [
+    {
+     "id": "S81",
+     "code": "confirm_true",
+     "label": "我確認以上填寫的資料屬實",
+     "type": "check",
+     "type_zh": "勾選",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "DM（新增）",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": true
+    },
+    {
+     "id": "S76",
+     "code": "consent_declaration",
+     "label": "我已閱讀並理解上述參與者聲明",
+     "type": "check",
+     "type_zh": "勾選",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "DD",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S77",
+     "code": "name_mirror",
+     "label": "姓名",
+     "type": "mirror",
+     "type_zh": "自動帶入",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": false,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "DE",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S79",
+     "code": "sig_student",
+     "label": "學員簽名",
+     "type": "sig",
+     "type_zh": "手寫簽名",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "DG",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "S80",
+     "code": "sig_guardian",
+     "label": "父母／監護人簽名",
+     "type": "sig",
+     "type_zh": "手寫簽名",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "年齡 < 18 才出現（門檻待定）",
+     "sheet_column": "DH",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    },
+    {
+     "id": "K25",
+     "code": "sig_coach",
+     "label": "教練簽名",
+     "type": "sig",
+     "type_zh": "手寫簽名",
+     "options": null,
+     "exclusive_option": null,
+     "unit": null,
+     "allow_negative": false,
+     "required": true,
+     "show_if": null,
+     "show_note": "",
+     "sheet_column": "DI",
+     "template_cell": "",
+     "rule": "",
+     "new_in_v2": false
+    }
+   ]
+  }
+ ],
+ "retired": [
+  {
+   "id": "S06",
+   "code": "address",
+   "label": "聯絡地址",
+   "sheet_column": "M",
+   "reason": "11/8 拿掉聯絡地址"
+  },
+  {
+   "id": "S23",
+   "code": "sig1_student",
+   "label": "學員簽名",
+   "sheet_column": "AZ",
+   "reason": "11/7 簽名合併：改 S81 勾選"
+  },
+  {
+   "id": "S24",
+   "code": "sig1_date",
+   "label": "日期",
+   "sheet_column": "BA",
+   "reason": "11/7 日期只留 K03"
+  },
+  {
+   "id": "S25",
+   "code": "sig1_guardian",
+   "label": "父母／監護人簽名",
+   "sheet_column": "BB",
+   "reason": "11/7 簽名合併：監護人只簽 S80"
+  },
+  {
+   "id": "S78",
+   "code": "sig2_date",
+   "label": "日期",
+   "sheet_column": "DF",
+   "reason": "11/7 日期只留 K03"
+  },
+  {
+   "id": "K14",
+   "code": "walk4_over",
+   "label": "（已停用）超過 4 秒",
+   "sheet_column": "Y",
+   "reason": "11/6 拿掉，K13 秒數必填"
+  }
+ ],
+ "notes": [
+  "題號不重編；總表欄位順序不動；停用題保留欄位、畫面不顯示",
+  "必填只在題目有顯示時才算",
+  "PAR-Q+ 追問題：大題答「有」才出現 a–e 小題"
+ ]
+}
